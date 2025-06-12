@@ -1,0 +1,5 @@
+if(EXISTS "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/movers/tests/MoverFactory_test[1]_tests.cmake")
+  include("C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/movers/tests/MoverFactory_test[1]_tests.cmake")
+else()
+  add_test(MoverFactory_test_NOT_BUILT MoverFactory_test_NOT_BUILT)
+endif()

@@ -1,0 +1,27 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:\\wxWidgets-3.2.6\\install\\include",
+                "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.6\\include",
+                "C:/Users/Mati/miniconda3/envs/myenv/include/pybind11_global",
+                "C:/Users/Mati/miniconda3/envs/myenv"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "__CUDACC__"
+            ],
+            "windowsSdkVersion": "10.0.19041.0",
+            "compilerPath": "c:\\msys64\\ucrt64\\bin\\g++.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-gcc-x64",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
+}

@@ -1,0 +1,5 @@
+if(EXISTS "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/dataStructs/tests/Vect2_test[1]_tests.cmake")
+  include("C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/dataStructs/tests/Vect2_test[1]_tests.cmake")
+else()
+  add_test(Vect2_test_NOT_BUILT Vect2_test_NOT_BUILT)
+endif()

@@ -1,0 +1,128 @@
+[
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/SimulatorLib.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\SimulatorLib.dir\\Simulator.cpp.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\simulator\\Simulator.cpp",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/simulator/Simulator.cpp",
+  "output": "simulator/CMakeFiles/SimulatorLib.dir/Simulator.cpp.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/dataStructs",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/DataStructsLib.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\DataStructsLib.dir\\Vect2.cpp.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\simulator\\dataStructs\\Vect2.cpp",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/simulator/dataStructs/Vect2.cpp",
+  "output": "simulator/dataStructs/CMakeFiles/DataStructsLib.dir/Vect2.cpp.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/dataStructs/tests",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/Vect2_test.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\Vect2_test.dir\\Vect2_test.cpp.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\simulator\\dataStructs\\tests\\Vect2_test.cpp",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/simulator/dataStructs/tests/Vect2_test.cpp",
+  "output": "simulator/dataStructs/tests/CMakeFiles/Vect2_test.dir/Vect2_test.cpp.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/_deps/googletest-build/googlemock",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/gmock.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles\\gmock.dir\\src\\gmock-all.cc.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\build\\_deps\\googletest-src\\googlemock\\src\\gmock-all.cc",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/build/_deps/googletest-src/googlemock/src/gmock-all.cc",
+  "output": "_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/_deps/googletest-build/googlemock",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/gmock_main.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles\\gmock_main.dir\\src\\gmock_main.cc.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\build\\_deps\\googletest-src\\googlemock\\src\\gmock_main.cc",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/build/_deps/googletest-src/googlemock/src/gmock_main.cc",
+  "output": "_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/_deps/googletest-build/googletest",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/gtest.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles\\gtest.dir\\src\\gtest-all.cc.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\build\\_deps\\googletest-src\\googletest\\src\\gtest-all.cc",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/build/_deps/googletest-src/googletest/src/gtest-all.cc",
+  "output": "_deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/_deps/googletest-build/googletest",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/gtest_main.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles\\gtest_main.dir\\src\\gtest_main.cc.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\build\\_deps\\googletest-src\\googletest\\src\\gtest_main.cc",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/build/_deps/googletest-src/googletest/src/gtest_main.cc",
+  "output": "_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/effects/tests",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/Effect_test.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\Effect_test.dir\\Effect_test.cpp.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\simulator\\effects\\tests\\Effect_test.cpp",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/simulator/effects/tests/Effect_test.cpp",
+  "output": "simulator/effects/tests/CMakeFiles/Effect_test.dir/Effect_test.cpp.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/interactions",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/InteractionsLib.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\InteractionsLib.dir\\InteractingGroup.cpp.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\simulator\\interactions\\InteractingGroup.cpp",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/simulator/interactions/InteractingGroup.cpp",
+  "output": "simulator/interactions/CMakeFiles/InteractionsLib.dir/InteractingGroup.cpp.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/interactions",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/InteractionsLib.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\InteractionsLib.dir\\Interaction.cpp.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\simulator\\interactions\\Interaction.cpp",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/simulator/interactions/Interaction.cpp",
+  "output": "simulator/interactions/CMakeFiles/InteractionsLib.dir/Interaction.cpp.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/interactions",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/InteractionsLib.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\InteractionsLib.dir\\InteractionTypes\\CoulombInteraction.cpp.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\simulator\\interactions\\InteractionTypes\\CoulombInteraction.cpp",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/simulator/interactions/InteractionTypes/CoulombInteraction.cpp",
+  "output": "simulator/interactions/CMakeFiles/InteractionsLib.dir/InteractionTypes/CoulombInteraction.cpp.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/interactions",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/InteractionsLib.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\InteractionsLib.dir\\InteractionTypes\\SpringInteraction.cpp.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\simulator\\interactions\\InteractionTypes\\SpringInteraction.cpp",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/simulator/interactions/InteractionTypes/SpringInteraction.cpp",
+  "output": "simulator/interactions/CMakeFiles/InteractionsLib.dir/InteractionTypes/SpringInteraction.cpp.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/movers",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/MoversLib.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\MoversLib.dir\\Mover.cpp.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\simulator\\movers\\Mover.cpp",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/simulator/movers/Mover.cpp",
+  "output": "simulator/movers/CMakeFiles/MoversLib.dir/Mover.cpp.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/movers",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/MoversLib.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\MoversLib.dir\\MoverFactory.cpp.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\simulator\\movers\\MoverFactory.cpp",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/simulator/movers/MoverFactory.cpp",
+  "output": "simulator/movers/CMakeFiles/MoversLib.dir/MoverFactory.cpp.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/movers",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/MoversLib.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\MoversLib.dir\\RigidMovers.cpp.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\simulator\\movers\\RigidMovers.cpp",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/simulator/movers/RigidMovers.cpp",
+  "output": "simulator/movers/CMakeFiles/MoversLib.dir/RigidMovers.cpp.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/movers/tests",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/Mover_test.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\Mover_test.dir\\Mover_test.cpp.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\simulator\\movers\\tests\\Mover_test.cpp",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/simulator/movers/tests/Mover_test.cpp",
+  "output": "simulator/movers/tests/CMakeFiles/Mover_test.dir/Mover_test.cpp.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/movers/tests",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/MoverFactory_test.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\MoverFactory_test.dir\\MoverFactory_test.cpp.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\simulator\\movers\\tests\\MoverFactory_test.cpp",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/simulator/movers/tests/MoverFactory_test.cpp",
+  "output": "simulator/movers/tests/CMakeFiles/MoverFactory_test.dir/MoverFactory_test.cpp.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/movers/tests",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/RigidMover_test.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\RigidMover_test.dir\\RigidMover_test.cpp.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\simulator\\movers\\tests\\RigidMover_test.cpp",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/simulator/movers/tests/RigidMover_test.cpp",
+  "output": "simulator/movers/tests/CMakeFiles/RigidMover_test.dir/RigidMover_test.cpp.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/tests",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/Simulator_test.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\Simulator_test.dir\\Simulator_test.cpp.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\simulator\\tests\\Simulator_test.cpp",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/simulator/tests/Simulator_test.cpp",
+  "output": "simulator/tests/CMakeFiles/Simulator_test.dir/Simulator_test.cpp.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/apps/pybindApp",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -Dphys_engine_EXPORTS @CMakeFiles/phys_engine.dir/includes_CXX.rsp -g -std=gnu++17 -fvisibility=hidden -o CMakeFiles\\phys_engine.dir\\pybinder.cpp.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\apps\\pybindApp\\pybinder.cpp",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/apps/pybindApp/pybinder.cpp",
+  "output": "apps/pybindApp/CMakeFiles/phys_engine.dir/pybinder.cpp.obj"
+},
+{
+  "directory": "C:/Users/Mati/Documents/PhysEngineRestructured/build/apps/standalone1",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/standalone1.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\standalone1.dir\\mainEntry.cpp.obj -c C:\\Users\\Mati\\Documents\\PhysEngineRestructured\\apps\\standalone1\\mainEntry.cpp",
+  "file": "C:/Users/Mati/Documents/PhysEngineRestructured/apps/standalone1/mainEntry.cpp",
+  "output": "apps/standalone1/CMakeFiles/standalone1.dir/mainEntry.cpp.obj"
+}
+]

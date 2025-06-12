@@ -1,0 +1,408 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.22631 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      MSBuild version 17.12.12+1cce77968 for .NET Framework
+      Build started 4/2/2025 12:02:27 PM.
+      
+      Project "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\3.31.0\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
+      PrepareForBuild:
+        Creating directory "Debug\\".
+        Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+        Creating directory "Debug\\CompilerIdCXX.tlog\\".
+      InitializeBuildStatus:
+        Creating "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+        Touching "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+      ClCompile:
+        F:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        F:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\3.31.0\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=F:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        Deleting file "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+        Touching "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate".
+      Done Building Project "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\3.31.0\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets).
+      
+      Build succeeded.
+          0 Warning(s)
+          0 Error(s)
+      
+      Time Elapsed 00:00:01.89
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/3.31.0/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-yqiyyp"
+      binary: "C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-yqiyyp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-yqiyyp'
+        
+        Run Build Command(s): "F:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_4997f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 4/2/2025 12:02:30 PM.
+        
+        Project "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-yqiyyp\\cmTC_4997f.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_4997f.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-yqiyyp\\Debug\\".
+          Creating directory "cmTC_4997f.dir\\Debug\\cmTC_4997f.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_4997f.dir\\Debug\\cmTC_4997f.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_4997f.dir\\Debug\\cmTC_4997f.tlog\\unsuccessfulbuild".
+        ClCompile:
+          F:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_4997f.dir\\Debug\\\\" /Fd"cmTC_4997f.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_4997f.dir\\Debug\\\\" /Fd"cmTC_4997f.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          F:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-yqiyyp\\Debug\\cmTC_4997f.exe" /INCREMENTAL /ILK:"cmTC_4997f.dir\\Debug\\cmTC_4997f.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-yqiyyp/Debug/cmTC_4997f.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-yqiyyp/Debug/cmTC_4997f.lib" /MACHINE:X64  /machine:x64 cmTC_4997f.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_4997f.vcxproj -> C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-yqiyyp\\Debug\\cmTC_4997f.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_4997f.dir\\Debug\\cmTC_4997f.tlog\\unsuccessfulbuild".
+          Touching "cmTC_4997f.dir\\Debug\\cmTC_4997f.tlog\\cmTC_4997f.lastbuildstate".
+        Done Building Project "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-yqiyyp\\cmTC_4997f.vcxproj" (default targets).
+        
+        Build succeeded.
+            0 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.72
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': F:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.42.34433/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "F:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.42.34433/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.42.34435.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/Internal/CheckSourceCompiles.cmake:108 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CheckCXXCompilerFlag.cmake:55 (cmake_check_compiler_flag)"
+      - "C:/Users/Mati/miniconda3/envs/myenv/Library/share/cmake/pybind11/pybind11Common.cmake:323 (check_cxx_compiler_flag)"
+      - "C:/Users/Mati/miniconda3/envs/myenv/Library/share/cmake/pybind11/pybind11Common.cmake:390 (_pybind11_return_if_cxx_and_linker_flags_work)"
+      - "C:/Users/Mati/miniconda3/envs/myenv/Library/share/cmake/pybind11/pybind11Common.cmake:435 (_pybind11_generate_lto)"
+      - "C:/Users/Mati/miniconda3/envs/myenv/Library/share/cmake/pybind11/pybind11Config.cmake:250 (include)"
+      - "CMakeLists.txt:28 (find_package)"
+    checks:
+      - "Performing Test HAS_MSVC_GL_LTCG"
+    directories:
+      source: "C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-ll57x3"
+      binary: "C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-ll57x3"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: ""
+    buildResult:
+      variable: "HAS_MSVC_GL_LTCG"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-ll57x3'
+        
+        Run Build Command(s): "F:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_1dccc.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 4/2/2025 12:02:31 PM.
+        
+        Project "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-ll57x3\\cmTC_1dccc.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_1dccc.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-ll57x3\\Debug\\".
+          Creating directory "cmTC_1dccc.dir\\Debug\\cmTC_1dccc.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_1dccc.dir\\Debug\\cmTC_1dccc.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_1dccc.dir\\Debug\\cmTC_1dccc.tlog\\unsuccessfulbuild".
+        ClCompile:
+          F:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /GL /D _MBCS /D WIN32 /D _WINDOWS /D HAS_MSVC_GL_LTCG /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_1dccc.dir\\Debug\\\\" /Fd"cmTC_1dccc.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-ll57x3\\src.cxx"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /GL /D _MBCS /D WIN32 /D _WINDOWS /D HAS_MSVC_GL_LTCG /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /std:c++17 /Fo"cmTC_1dccc.dir\\Debug\\\\" /Fd"cmTC_1dccc.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-ll57x3\\src.cxx"
+          src.cxx
+        Link:
+          F:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-ll57x3\\Debug\\cmTC_1dccc.exe" /INCREMENTAL /ILK:"cmTC_1dccc.dir\\Debug\\cmTC_1dccc.ilk" /NOLOGO "-LTCG" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-ll57x3/Debug/cmTC_1dccc.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-ll57x3/Debug/cmTC_1dccc.lib" /MACHINE:X64  /machine:x64 cmTC_1dccc.dir\\Debug\\src.obj
+        LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-ll57x3\\cmTC_1dccc.vcxproj]
+          Generating code
+          Finished generating code
+          cmTC_1dccc.vcxproj -> C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-ll57x3\\Debug\\cmTC_1dccc.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_1dccc.dir\\Debug\\cmTC_1dccc.tlog\\unsuccessfulbuild".
+          Touching "cmTC_1dccc.dir\\Debug\\cmTC_1dccc.tlog\\cmTC_1dccc.lastbuildstate".
+        Done Building Project "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-ll57x3\\cmTC_1dccc.vcxproj" (default targets).
+        
+        Build succeeded.
+        
+        "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-ll57x3\\cmTC_1dccc.vcxproj" (default target) (1) ->
+        (Link target) -> 
+          LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-ll57x3\\cmTC_1dccc.vcxproj]
+        
+            1 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.68
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "simulator/dataStructs/tests/CMakeLists.txt:5 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: C:/msys64/ucrt64/bin/gcc.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.exe"
+      
+      The C compiler identification is GNU, found in:
+        C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/3.31.0/CompilerIdC/a.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "simulator/dataStructs/tests/CMakeLists.txt:5 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-iinwm0"
+      binary: "C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-iinwm0"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-iinwm0'
+        
+        Run Build Command(s): "F:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_d6f95.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.12.12+1cce77968 for .NET Framework
+        Build started 4/2/2025 12:02:32 PM.
+        
+        Project "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj" on node 1 (default targets).
+        PrepareForBuild:
+          Creating directory "cmTC_d6f95.dir\\Debug\\".
+          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+          Creating directory "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\Debug\\".
+          Creating directory "cmTC_d6f95.dir\\Debug\\cmTC_d6f95.tlog\\".
+        InitializeBuildStatus:
+          Creating "cmTC_d6f95.dir\\Debug\\cmTC_d6f95.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_d6f95.dir\\Debug\\cmTC_d6f95.tlog\\unsuccessfulbuild".
+        ClCompile:
+          F:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /W1 /WX- /diagnostics:column /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_d6f95.dir\\Debug\\\\" /Fd"cmTC_d6f95.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue  -g -v "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"
+          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
+          Copyright (C) Microsoft Corporation.  All rights reserved.
+          cl /c /W1 /WX- /diagnostics:column /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_d6f95.dir\\Debug\\\\" /Fd"cmTC_d6f95.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue  -g -v "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"
+        cl : command line  warning D9002: ignoring unknown option '-g' [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj]
+        cl : command line  warning D9002: ignoring unknown option '-v' [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj]
+          CMakeCCompilerABI.c
+        Link:
+          F:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\bin\\Hostx64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\Debug\\cmTC_d6f95.exe" /INCREMENTAL /ILK:"cmTC_d6f95.dir\\Debug\\cmTC_d6f95.ilk" /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-iinwm0/Debug/cmTC_d6f95.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-iinwm0/Debug/libcmTC_d6f95.dll.a" /MACHINE:X64  /machine:x64 -v -Wl,-v cmTC_d6f95.dir\\Debug\\CMakeCCompilerABI.obj
+        LINK : warning LNK4044: unrecognized option '/v'; ignored [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj]
+        LINK : warning LNK4044: unrecognized option '/Wl,-v'; ignored [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj]
+          cmTC_d6f95.vcxproj -> C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\Debug\\cmTC_d6f95.exe
+        FinalizeBuildStatus:
+          Deleting file "cmTC_d6f95.dir\\Debug\\cmTC_d6f95.tlog\\unsuccessfulbuild".
+          Touching "cmTC_d6f95.dir\\Debug\\cmTC_d6f95.tlog\\cmTC_d6f95.lastbuildstate".
+        Done Building Project "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj" (default targets).
+        
+        Build succeeded.
+        
+        "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj" (default target) (1) ->
+        (ClCompile target) -> 
+          cl : command line  warning D9002: ignoring unknown option '-g' [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj]
+          cl : command line  warning D9002: ignoring unknown option '-v' [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj]
+        
+        
+        "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj" (default target) (1) ->
+        (Link target) -> 
+          LINK : warning LNK4044: unrecognized option '/v'; ignored [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj]
+          LINK : warning LNK4044: unrecognized option '/Wl,-v'; ignored [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj]
+        
+            4 Warning(s)
+            0 Error(s)
+        
+        Time Elapsed 00:00:00.82
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:182 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "simulator/dataStructs/tests/CMakeLists.txt:5 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=start
+        warn: unable to parse implicit include dirs!
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "simulator/dataStructs/tests/CMakeLists.txt:5 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(link\\.exe|;ld[0-9]*(\\.[a-z]+)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(link\\.exe|;ld[0-9]*(\\.[a-z]+)?))("|,| |$)]
+        ignore line: [Change Dir: 'C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-iinwm0']
+        ignore line: []
+        ignore line: [Run Build Command(s): "F:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_d6f95.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n]
+        ignore line: [MSBuild version 17.12.12+1cce77968 for .NET Framework]
+        ignore line: [Build started 4/2/2025 12:02:32 PM.]
+        ignore line: []
+        ignore line: [Project "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj" on node 1 (default targets).]
+        ignore line: [PrepareForBuild:]
+        ignore line: [  Creating directory "cmTC_d6f95.dir\\Debug\\".]
+        ignore line: [  Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.]
+        ignore line: [  Creating directory "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\Debug\\".]
+        ignore line: [  Creating directory "cmTC_d6f95.dir\\Debug\\cmTC_d6f95.tlog\\".]
+        ignore line: [InitializeBuildStatus:]
+        ignore line: [  Creating "cmTC_d6f95.dir\\Debug\\cmTC_d6f95.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.]
+        ignore line: [  Touching "cmTC_d6f95.dir\\Debug\\cmTC_d6f95.tlog\\unsuccessfulbuild".]
+        ignore line: [ClCompile:]
+        ignore line: [  F:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /W1 /WX- /diagnostics:column /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_d6f95.dir\\Debug\\\\" /Fd"cmTC_d6f95.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue  -g -v "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"]
+        ignore line: [  Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64]
+        ignore line: [  Copyright (C) Microsoft Corporation.  All rights reserved.]
+        ignore line: [  cl /c /W1 /WX- /diagnostics:column /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_d6f95.dir\\Debug\\\\" /Fd"cmTC_d6f95.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue  -g -v "C:\\Program Files\\CMake\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"]
+        ignore line: [cl : command line  warning D9002: ignoring unknown option '-g' [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj]]
+        ignore line: [cl : command line  warning D9002: ignoring unknown option '-v' [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj]]
+        ignore line: [  CMakeCCompilerABI.c]
+        ignore line: [Link:]
+        ignore line: [  F:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\bin\\Hostx64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\Debug\\cmTC_d6f95.exe" /INCREMENTAL /ILK:"cmTC_d6f95.dir\\Debug\\cmTC_d6f95.ilk" /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-iinwm0/Debug/cmTC_d6f95.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Mati/Documents/PhysEngine restructuring/CMakeFiles/CMakeScratch/TryCompile-iinwm0/Debug/libcmTC_d6f95.dll.a" /MACHINE:X64  /machine:x64 -v -Wl,-v cmTC_d6f95.dir\\Debug\\CMakeCCompilerABI.obj]
+        ignore line: [LINK : warning LNK4044: unrecognized option '/v']
+        ignore line: [ ignored [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj]]
+        ignore line: [LINK : warning LNK4044: unrecognized option '/Wl -v']
+        ignore line: [ ignored [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj]]
+        ignore line: [  cmTC_d6f95.vcxproj -> C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\Debug\\cmTC_d6f95.exe]
+        ignore line: [FinalizeBuildStatus:]
+        ignore line: [  Deleting file "cmTC_d6f95.dir\\Debug\\cmTC_d6f95.tlog\\unsuccessfulbuild".]
+        ignore line: [  Touching "cmTC_d6f95.dir\\Debug\\cmTC_d6f95.tlog\\cmTC_d6f95.lastbuildstate".]
+        ignore line: [Done Building Project "C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj" (default targets).]
+        ignore line: []
+        ignore line: [Build succeeded.]
+        ignore line: []
+        ignore line: ["C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj" (default target) (1) ->]
+        ignore line: [(ClCompile target) -> ]
+        ignore line: [  cl : command line  warning D9002: ignoring unknown option '-g' [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj]]
+        ignore line: [  cl : command line  warning D9002: ignoring unknown option '-v' [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj]]
+        ignore line: []
+        ignore line: []
+        ignore line: ["C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj" (default target) (1) ->]
+        ignore line: [(Link target) -> ]
+        ignore line: [  LINK : warning LNK4044: unrecognized option '/v']
+        ignore line: [ ignored [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj]]
+        ignore line: [  LINK : warning LNK4044: unrecognized option '/Wl -v']
+        ignore line: [ ignored [C:\\Users\\Mati\\Documents\\PhysEngine restructuring\\CMakeFiles\\CMakeScratch\\TryCompile-iinwm0\\cmTC_d6f95.vcxproj]]
+        ignore line: []
+        ignore line: [    4 Warning(s)]
+        ignore line: [    0 Error(s)]
+        ignore line: []
+        ignore line: [Time Elapsed 00:00:00.82]
+        ignore line: []
+        ignore line: []
+        linker tool for 'C': F:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "simulator/dataStructs/tests/CMakeLists.txt:5 (project)"
+    message: |
+      Running the C compiler's linker: "F:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.42.34435.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+...

@@ -1,0 +1,15 @@
+{
+  "name": "Debug GoogleTest",
+  "type": "cppdbg",
+  "request": "launch",
+  "program": "${workspaceFolder}/build/tests/RigidMover_test",
+  "args": [],
+  "stopAtEntry": false,
+  "cwd": "${workspaceFolder}",
+  "environment": [],
+  "externalConsole": false,
+  "MIMode": "gdb",
+  "configurations": [
+  
+  ]
+}

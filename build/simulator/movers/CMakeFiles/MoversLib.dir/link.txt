@@ -1,0 +1,2 @@
+C:\msys64\ucrt64\bin\ar.exe qc libMoversLib.a CMakeFiles/MoversLib.dir/Mover.cpp.obj CMakeFiles/MoversLib.dir/MoverFactory.cpp.obj CMakeFiles/MoversLib.dir/RigidMovers.cpp.obj
+C:\msys64\ucrt64\bin\ranlib.exe libMoversLib.a

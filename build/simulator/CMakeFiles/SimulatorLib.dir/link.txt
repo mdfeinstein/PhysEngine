@@ -1,0 +1,2 @@
+C:\msys64\ucrt64\bin\ar.exe qc libSimulatorLib.a CMakeFiles/SimulatorLib.dir/Simulator.cpp.obj
+C:\msys64\ucrt64\bin\ranlib.exe libSimulatorLib.a

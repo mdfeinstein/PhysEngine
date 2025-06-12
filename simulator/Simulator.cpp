@@ -174,10 +174,7 @@ void Simulator::update() {
     std::lock_guard<std::mutex> lock(updateLock);
     int item_count = movers.size();
     int thread_count = std::thread::hardware_concurrency(); 
-    std::vector<std::thread> threads;
-    ThreadGuard guard(threads); // when this scope ends, this ensures thread joining in the destructor
-    // this chunking method is unclear for cases where item_count < thread_count
-    // but it seems that it works?
+    std::vector<std::future<void>> futures;
     int chunk_size = item_count / thread_count;
     for (int i_thread = 0; i_thread < thread_count; i_thread++) {
         int start = i_thread * chunk_size;
@@ -185,8 +182,8 @@ void Simulator::update() {
         if (i_thread == thread_count - 1) {
             end = item_count;
         }
-        threads.push_back(std::thread(
-            [this, start, end](){
+        futures.push_back(
+            threadPool.enqueue([this, start, end](){
                 for (int i = start; i < end; i++) {
                     Mover& mover1 = *movers[i];
                     for (int j = i+1; j < movers.size(); j++){
@@ -199,43 +196,45 @@ void Simulator::update() {
                         effect->apply(&mover1);
                     }
                 }
-            }
-            )
+            })
         );
     }
 
     // sync threads back up, since dont want position/velocity updates before all forces are applied
-    for (auto& thread : threads) {
-        thread.join();
+    for (auto& future : futures) {
+        future.get();
     }
+    futures.clear();
     //update interacting groups
     for (auto& group : interactingGroups) {
         group->applyInteractions(); //should modify this to run multithreaded
     }
 
-    //update movers using threads
+    //update movers using threadPool
     for (int i_thread = 0; i_thread < thread_count; i_thread++) {
         int start = i_thread * chunk_size;
         int end = start + chunk_size;
         if (i_thread == thread_count - 1) {
             end = item_count;
         }
-        threads[i_thread] = std::thread( [this, start, end](){
-            for (int i = start; i < end; i++) {
-                Mover& mover = *movers[i];
-                bool reflected = false;
-                for (auto& wall : walls) {
-                    reflected = wall->reflect(mover, global_dt);
-                    if (reflected) break; //only reflect once
+        futures.push_back(
+            threadPool.enqueue( [this, start, end](){
+                for (int i = start; i < end; i++) {
+                    Mover& mover = *movers[i];
+                    bool reflected = false;
+                    for (auto& wall : walls) {
+                        reflected = wall->reflect(mover, global_dt);
+                        if (reflected) break; //only reflect once
+                    }
+                    if (!reflected) //update didnt occured within wall->reflect
+                        mover.update(global_dt);
                 }
-                if (!reflected) //update didnt occured within wall->reflect
-                    mover.update(global_dt);
-            }
-        });
+            })
+        );
     }
     //rejoin threads befroe ending update
-    for (auto& thread : threads) {
-        thread.join();
+    for (auto& future : futures) {
+        future.get(); 
     }
     current_time += global_dt;
 }

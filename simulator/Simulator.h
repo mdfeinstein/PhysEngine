@@ -15,6 +15,7 @@
 #include <mutex>
 #include <thread>
 #include "ThreadGuard.h"
+#include "ThreadPool.h"
 
 /* 
 Simulator holds the simulation objects with metadata. Facilitates interactions between objects.
@@ -37,6 +38,7 @@ public:
     std::vector< std::unique_ptr<RigidConnectedGroup> > groups;
     std::vector<std::unique_ptr<InteractingGroup>> interactingGroups;
     float interaction_min_distance = 1;
+    ThreadPool threadPool = ThreadPool(std::thread::hardware_concurrency());
 
     Simulator(float dt);
 

@@ -24,6 +24,7 @@ apps/standalone1/CMakeFiles/standalone1.dir/mainEntry.cpp.obj: C:/Users/Mati/Doc
   C:/Users/Mati/Documents/PhysEngineRestructured/simulator/movers/RigidMovers.h \
   C:/Users/Mati/Documents/PhysEngineRestructured/simulator/objects/Wall.h \
   C:/Users/Mati/Documents/PhysEngineRestructured/simulator/utility/ThreadGuard.h \
+  C:/Users/Mati/Documents/PhysEngineRestructured/simulator/utility/ThreadPool.h \
   C:/msys64/ucrt64/include/_bsd_types.h \
   C:/msys64/ucrt64/include/_mingw.h \
   C:/msys64/ucrt64/include/_mingw_mac.h \
@@ -52,6 +53,7 @@ apps/standalone1/CMakeFiles/standalone1.dir/mainEntry.cpp.obj: C:/Users/Mati/Doc
   C:/msys64/ucrt64/include/c++/14.2.0/bits/allocated_ptr.h \
   C:/msys64/ucrt64/include/c++/14.2.0/bits/allocator.h \
   C:/msys64/ucrt64/include/c++/14.2.0/bits/atomic_base.h \
+  C:/msys64/ucrt64/include/c++/14.2.0/bits/atomic_futex.h \
   C:/msys64/ucrt64/include/c++/14.2.0/bits/atomic_lockfree_defines.h \
   C:/msys64/ucrt64/include/c++/14.2.0/bits/basic_ios.h \
   C:/msys64/ucrt64/include/c++/14.2.0/bits/basic_ios.tcc \
@@ -117,6 +119,7 @@ apps/standalone1/CMakeFiles/standalone1.dir/mainEntry.cpp.obj: C:/Users/Mati/Doc
   C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_iterator_base_funcs.h \
   C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_iterator_base_types.h \
   C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_pair.h \
+  C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_queue.h \
   C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_raw_storage_iter.h \
   C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_relops.h \
   C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_tempbuf.h \
@@ -144,6 +147,7 @@ apps/standalone1/CMakeFiles/standalone1.dir/mainEntry.cpp.obj: C:/Users/Mati/Doc
   C:/msys64/ucrt64/include/c++/14.2.0/cmath \
   C:/msys64/ucrt64/include/c++/14.2.0/compare \
   C:/msys64/ucrt64/include/c++/14.2.0/concepts \
+  C:/msys64/ucrt64/include/c++/14.2.0/condition_variable \
   C:/msys64/ucrt64/include/c++/14.2.0/cstddef \
   C:/msys64/ucrt64/include/c++/14.2.0/cstdint \
   C:/msys64/ucrt64/include/c++/14.2.0/cstdio \
@@ -163,6 +167,7 @@ apps/standalone1/CMakeFiles/standalone1.dir/mainEntry.cpp.obj: C:/Users/Mati/Doc
   C:/msys64/ucrt64/include/c++/14.2.0/ext/string_conversions.h \
   C:/msys64/ucrt64/include/c++/14.2.0/ext/type_traits.h \
   C:/msys64/ucrt64/include/c++/14.2.0/functional \
+  C:/msys64/ucrt64/include/c++/14.2.0/future \
   C:/msys64/ucrt64/include/c++/14.2.0/initializer_list \
   C:/msys64/ucrt64/include/c++/14.2.0/ios \
   C:/msys64/ucrt64/include/c++/14.2.0/iosfwd \
@@ -180,6 +185,7 @@ apps/standalone1/CMakeFiles/standalone1.dir/mainEntry.cpp.obj: C:/Users/Mati/Doc
   C:/msys64/ucrt64/include/c++/14.2.0/pstl/glue_algorithm_defs.h \
   C:/msys64/ucrt64/include/c++/14.2.0/pstl/glue_memory_defs.h \
   C:/msys64/ucrt64/include/c++/14.2.0/pstl/pstl_config.h \
+  C:/msys64/ucrt64/include/c++/14.2.0/queue \
   C:/msys64/ucrt64/include/c++/14.2.0/ratio \
   C:/msys64/ucrt64/include/c++/14.2.0/stdexcept \
   C:/msys64/ucrt64/include/c++/14.2.0/stdlib.h \
@@ -756,6 +762,10 @@ apps/standalone1/CMakeFiles/standalone1.dir/mainEntry.cpp.obj: C:/Users/Mati/Doc
   C:/Users/Mati/Documents/PhysEngineRestructured/apps/standalone1/app.h
 
 
+C:/Users/Mati/Documents/PhysEngineRestructured/simulator/utility/ThreadPool.h:
+
+C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/shaintrin.h:
+
 C:/wxWidgets-3.2.6/install/include/wx/iosfwrap.h:
 
 C:/Users/Mati/Documents/PhysEngineRestructured/apps/standalone1/mainEntry.cpp:
@@ -882,11 +892,11 @@ C:/wxWidgets-3.2.6/install/include/wx/msw/button.h:
 
 C:/Users/Mati/Documents/PhysEngineRestructured/simulator/interactions/InteractionTypes/Gravity.h:
 
+C:/wxWidgets-3.2.6/install/include/wx/any.h:
+
 C:/Users/Mati/Documents/PhysEngineRestructured/simulator/interactions/InteractionTypes/SoftCollideInteraction.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/avxneconvertintrin.h:
-
-C:/wxWidgets-3.2.6/install/include/wx/any.h:
 
 C:/msys64/ucrt64/include/c++/14.2.0/bits/std_thread.h:
 
@@ -898,9 +908,9 @@ C:/msys64/ucrt64/include/c++/14.2.0/backward/auto_ptr.h:
 
 C:/Users/Mati/Documents/PhysEngineRestructured/simulator/interactions/InteractionTypes/SpringInteraction.h:
 
-C:/msys64/ucrt64/include/c++/14.2.0/bits/cxxabi_init_exception.h:
-
 C:/Users/Mati/Documents/PhysEngineRestructured/simulator/movers/Mover.h:
+
+C:/msys64/ucrt64/include/c++/14.2.0/bits/cxxabi_init_exception.h:
 
 C:/wxWidgets-3.2.6/install/include/wx/msw/winundef.h:
 
@@ -971,6 +981,12 @@ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/clzerointrin.h:
 C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_algobase.h:
 
 C:/msys64/ucrt64/include/c++/14.2.0/bits/basic_ios.tcc:
+
+C:/msys64/ucrt64/include/psdk_inc/_fd_types.h:
+
+C:/msys64/ucrt64/include/rpcnsip.h:
+
+C:/msys64/ucrt64/include/c++/14.2.0/bits/atomic_futex.h:
 
 C:/msys64/ucrt64/include/_mingw_stdarg.h:
 
@@ -1230,11 +1246,15 @@ C:/wxWidgets-3.2.6/install/include/wx/defs.h:
 
 C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_pair.h:
 
+C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_queue.h:
+
+C:/msys64/ucrt64/include/c++/14.2.0/bits/this_thread_sleep.h:
+
 C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_raw_storage_iter.h:
 
-C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_relops.h:
-
 C:/wxWidgets-3.2.6/install/include/wx/anystr.h:
+
+C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_relops.h:
 
 C:/msys64/ucrt64/include/c++/14.2.0/bits/stl_tempbuf.h:
 
@@ -1255,8 +1275,6 @@ C:/wxWidgets-3.2.6/install/include/wx/versioninfo.h:
 C:/msys64/ucrt64/include/c++/14.2.0/bits/stringfwd.h:
 
 C:/msys64/ucrt64/include/wow64apiset.h:
-
-C:/msys64/ucrt64/include/c++/14.2.0/bits/this_thread_sleep.h:
 
 C:/msys64/ucrt64/include/c++/14.2.0/iosfwd:
 
@@ -1307,6 +1325,12 @@ C:/msys64/ucrt64/include/c++/14.2.0/vector:
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/avx512vbmiintrin.h:
 
 C:/msys64/ucrt64/include/c++/14.2.0/concepts:
+
+C:/wxWidgets-3.2.6/install/include/wx/object.h:
+
+C:/msys64/ucrt64/include/sal.h:
+
+C:/msys64/ucrt64/include/c++/14.2.0/condition_variable:
 
 C:/msys64/ucrt64/include/c++/14.2.0/cstddef:
 
@@ -1369,6 +1393,10 @@ C:/wxWidgets-3.2.6/install/include/wx/dialog.h:
 C:/msys64/ucrt64/include/prsht.h:
 
 C:/msys64/ucrt64/include/c++/14.2.0/functional:
+
+C:/wxWidgets-3.2.6/install/include/wx/msw/dialog.h:
+
+C:/msys64/ucrt64/include/c++/14.2.0/future:
 
 C:/msys64/ucrt64/include/c++/14.2.0/initializer_list:
 
@@ -1445,6 +1473,8 @@ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/prfchiintrin.h:
 C:/msys64/ucrt64/include/c++/14.2.0/pstl/glue_algorithm_defs.h:
 
 C:/msys64/ucrt64/include/c++/14.2.0/pstl/glue_memory_defs.h:
+
+C:/msys64/ucrt64/include/c++/14.2.0/queue:
 
 C:/wxWidgets-3.2.6/install/include/wx/atomic.h:
 
@@ -1630,13 +1660,13 @@ C:/msys64/ucrt64/include/locale.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/enqcmdintrin.h:
 
-C:/msys64/ucrt64/include/lzexpand.h:
-
-C:/wxWidgets-3.2.6/install/include/wx/affinematrix2dbase.h:
-
 C:/wxWidgets-3.2.6/install/include/wx/msw/winver.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/limits.h:
+
+C:/wxWidgets-3.2.6/install/include/wx/affinematrix2dbase.h:
+
+C:/msys64/ucrt64/include/lzexpand.h:
 
 C:/msys64/ucrt64/include/malloc.h:
 
@@ -1700,10 +1730,6 @@ C:/msys64/ucrt64/include/processtopologyapi.h:
 
 C:/msys64/ucrt64/include/propidl.h:
 
-C:/msys64/ucrt64/include/psdk_inc/_fd_types.h:
-
-C:/msys64/ucrt64/include/rpcnsip.h:
-
 C:/msys64/ucrt64/include/psdk_inc/_ip_types.h:
 
 C:/msys64/ucrt64/include/psdk_inc/_socket_types.h:
@@ -1757,10 +1783,6 @@ C:/wxWidgets-3.2.6/install/include/wx/validate.h:
 C:/msys64/ucrt64/include/rpcndr.h:
 
 C:/msys64/ucrt64/include/rpcsal.h:
-
-C:/wxWidgets-3.2.6/install/include/wx/object.h:
-
-C:/msys64/ucrt64/include/sal.h:
 
 C:/msys64/ucrt64/include/sdkddkver.h:
 
@@ -1948,8 +1970,6 @@ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/sgxintrin.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/sha512intrin.h:
 
-C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/shaintrin.h:
-
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/smmintrin.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/syslimits.h:
@@ -1963,10 +1983,6 @@ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/uintrintrin.h:
 C:/wxWidgets-3.2.6/install/include/wx/debug.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/xmmintrin.h:
-
-C:/wxWidgets-3.2.6/install/include/wx/msw/msgdlg.h:
-
-C:/wxWidgets-3.2.6/install/include/wx/anybutton.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/xopintrin.h:
 
@@ -1983,6 +1999,10 @@ C:/wxWidgets-3.2.6/install/include/wx/accel.h:
 C:/wxWidgets-3.2.6/install/include/wx/affinematrix2d.h:
 
 C:/wxWidgets-3.2.6/install/include/wx/afterstd.h:
+
+C:/wxWidgets-3.2.6/install/include/wx/msw/msgdlg.h:
+
+C:/wxWidgets-3.2.6/install/include/wx/anybutton.h:
 
 C:/wxWidgets-3.2.6/install/include/wx/version.h:
 
@@ -2145,8 +2165,6 @@ C:/wxWidgets-3.2.6/install/include/wx/msw/combobox.h:
 C:/wxWidgets-3.2.6/install/include/wx/msw/ole/dataobj.h:
 
 C:/wxWidgets-3.2.6/install/include/wx/msw/cursor.h:
-
-C:/wxWidgets-3.2.6/install/include/wx/msw/dialog.h:
 
 C:/wxWidgets-3.2.6/install/include/wx/msw/dirdlg.h:
 

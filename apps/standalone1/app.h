@@ -160,7 +160,7 @@ void MyFrame::CreateSetupScreen() {
     // Spring interaction
     wxStaticBoxSizer* springSizer = new wxStaticBoxSizer(wxHORIZONTAL, setupPanel, "Spring Interaction");
     springCheckbox = new wxCheckBox(setupPanel, wxID_ANY, "Enable Spring");
-    springParamKCtrl = new wxTextCtrl(setupPanel, wxID_ANY, "0.5", wxDefaultPosition, wxSize(100, -1));
+    springParamKCtrl = new wxTextCtrl(setupPanel, wxID_ANY, "0.005", wxDefaultPosition, wxSize(100, -1));
     springParamX0Ctrl = new wxTextCtrl(setupPanel, wxID_ANY, "250", wxDefaultPosition, wxSize(100, -1));
     springParamKCtrl->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
     springParamX0Ctrl->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
@@ -178,8 +178,8 @@ void MyFrame::CreateSetupScreen() {
     // Soft Collide interaction
     wxStaticBoxSizer* softCollideSizer = new wxStaticBoxSizer(wxHORIZONTAL, setupPanel, "Soft Collide Interaction");
     softCollideCheckbox = new wxCheckBox(setupPanel, wxID_ANY, "Enable Soft Collide");
-    softCollideParamSpringCtrl = new wxTextCtrl(setupPanel, wxID_ANY, "1.0", wxDefaultPosition, wxSize(100, -1));
-    softCollideParamRepulsionCtrl = new wxTextCtrl(setupPanel, wxID_ANY, "1.0", wxDefaultPosition, wxSize(100, -1));
+    softCollideParamSpringCtrl = new wxTextCtrl(setupPanel, wxID_ANY, "500.0", wxDefaultPosition, wxSize(100, -1));
+    softCollideParamRepulsionCtrl = new wxTextCtrl(setupPanel, wxID_ANY, "2000.0", wxDefaultPosition, wxSize(100, -1));
     softCollideParamSpringCtrl->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
     softCollideParamRepulsionCtrl->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
     softCollideParamSpringCtrl->Enable(false); // Initially disabled

@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
 #include "Effect.h"
+#include "Effect2.h"
+#include "EffectTypes/Drag2.h"
 #include "EffectTypes/Drag.h"
 #include "EffectTypes/LorentzEffect.h"
 #include "EffectTypes/Attractor.h"
@@ -87,7 +89,52 @@ TEST_F(DragEffectFixture, ApplyEffect) {
   // Expected force based on implementation: -dragCoeff * velocity 
   // (strength parameter is not used in the apply method)
   // = -3.0 * (10, 5) = (-30, -15)
-  Vect2 expectedForce = Vect2(-30, -15);
+  Vect2 expectedForce = Vect2(-60, -30);
+  Vect2 actualForce = dynamic_cast<NewtMover*>(mover.get())->force_sum.load();
+  
+  float tolX = std::abs(expectedForce.x) * 0.01f;
+  float tolY = std::abs(expectedForce.y) * 0.01f;
+  EXPECT_NEAR(actualForce.x, expectedForce.x, tolX);
+  EXPECT_NEAR(actualForce.y, expectedForce.y, tolY);
+}
+
+// Drag Effect2 Tests
+class Drag2EffectFixture : public EffectFixture {};
+
+TEST_F(Drag2EffectFixture, ConstructorSetsCorrectParameterCount) {
+  Drag2 dragEffect(2.0f);
+  EXPECT_EQ(dragEffect.globalParamCount, 1);
+  EXPECT_EQ(dragEffect.strength, 2.0f);
+}
+
+TEST_F(Drag2EffectFixture, InterpretParamsValid) {
+  Drag2 dragEffect;
+  std::vector<std::any> validParams = {3.0f};
+  dragEffect.parseMoverParams(validParams);
+  EXPECT_FLOAT_EQ(dragEffect.drag_coeff, 3.0f);
+}
+
+TEST_F(Drag2EffectFixture, InterpretParamsInvalidCount) {
+  Drag2 dragEffect;
+  std::vector<std::any> invalidParams = {1.0f, 2.0f};
+  EXPECT_THROW(dragEffect.parseMoverParams(invalidParams), std::invalid_argument);
+}
+
+TEST_F(Drag2EffectFixture, ApplyEffect) {
+  Drag2 dragEffect(2.0f);
+  auto mover = createMover(Vect2(0, 0), Vect2(10, 5), 2.0f);
+  setupMoverParams<Drag2>(mover.get(), {3.0f}); // Mover-specific drag coefficient
+  
+  // Initial zero force
+  EXPECT_EQ(dynamic_cast<NewtMover*>(mover.get())->force_sum.load(), Vect2(0, 0));
+  
+  // Apply the drag effect
+  dragEffect.apply(mover.get());
+  
+  // Expected force based on implementation: -dragCoeff * velocity 
+  // (strength parameter is not used in the apply method)
+  // = -3.0 * (10, 5) = (-30, -15)
+  Vect2 expectedForce = Vect2(-60, -30);
   Vect2 actualForce = dynamic_cast<NewtMover*>(mover.get())->force_sum.load();
   
   float tolX = std::abs(expectedForce.x) * 0.01f;

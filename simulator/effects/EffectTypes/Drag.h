@@ -14,7 +14,7 @@ class Drag : public Effect {
 
 void Drag::apply(Mover* mover){
     float drag_coeff = paramsFromMover(mover);
-    mover->apply_force(-1*drag_coeff*mover->velocity);
+    mover->apply_force(-1*drag_coeff*strength*mover->velocity);
 }
 
 std::any Drag::interpretParams(std::vector<std::any> params) {

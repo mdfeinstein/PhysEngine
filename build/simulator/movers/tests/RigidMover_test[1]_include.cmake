@@ -1,5 +1,0 @@
-if(EXISTS "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/movers/tests/RigidMover_test[1]_tests.cmake")
-  include("C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/movers/tests/RigidMover_test[1]_tests.cmake")
-else()
-  add_test(RigidMover_test_NOT_BUILT RigidMover_test_NOT_BUILT)
-endif()

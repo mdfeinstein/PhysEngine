@@ -6,6 +6,7 @@
 #include "Attractor.h"
 #include "SpringInteraction.h"
 #include "ConstantAcceleration.h"
+#include "EffectAdder.h"
 
 class SimulatorFixture : public ::testing::Test {
   protected:
@@ -556,3 +557,48 @@ TEST_F(ThreadingTestFixture, ManyMoversThreading) {
   CompareResults(3);  // Use fewer updates as this test is more computationally intensive
 }
 
+// Templated Effect tests
+class TemplatedEffectTestFixture : public ::testing::Test {
+protected:
+  Simulator sim = Simulator(0.01);
+  EffectAdder effectAdder = EffectAdder(&sim);
+  MoverArgs args1 = MoverArgs(Vect2(1, 2), Vect2(3, 4), Vect2(0, 0), 1.0, 1.0);
+  MoverArgs args2 = MoverArgs(Vect2(5, 6), Vect2(7, 8), Vect2(0, 0), 1.0, 1.0);
+};
+
+TEST_F(TemplatedEffectTestFixture, DragEffect) {
+  // add drag effect to simulator
+  effectAdder.addDrag(1.0, 1.0);
+  // add movers to simulator
+  sim.add_mover(typeid(NewtMover), args1);
+  sim.add_mover(typeid(NewtMover), args2);
+  effectAdder.addDragToMover(2.0, *sim.movers[0]);
+  // run some steps 
+  sim.update(100);
+  //check that velocity is lower than initial velocity
+  EXPECT_LT(sim.movers[0]->velocity.mag(), args1.velocity.value().mag());
+  EXPECT_LT(sim.movers[1]->velocity.mag(), args2.velocity.value().mag());
+  //check that direction is still the same
+  Vect2 direction0_actual = sim.movers[0]->velocity / sim.movers[0]->velocity.mag();
+  Vect2 direction1_actual = sim.movers[1]->velocity / sim.movers[1]->velocity.mag();
+  Vect2 direction0_expected = args1.velocity.value() / args1.velocity.value().mag();
+  Vect2 direction1_expected = args2.velocity.value() / args2.velocity.value().mag();
+  EXPECT_NEAR(direction0_actual.x, direction0_expected.x, 1e-5);
+  EXPECT_NEAR(direction0_actual.y, direction0_expected.y, 1e-5);
+  EXPECT_NEAR(direction1_actual.x, direction1_expected.x, 1e-5);
+  EXPECT_NEAR(direction1_actual.y, direction1_expected.y, 1e-5);
+};
+
+//test multiple added effects works
+TEST_F(TemplatedEffectTestFixture, AttractorandDragEffect) {
+  // add attractor effect to simulator
+  effectAdder.addAttractor(1.0, Vect2(0, 0), 1.0);
+  // add drag effect to simulator
+  effectAdder.addDrag(1.0, 1.0);
+  // add movers to simulator
+  sim.add_mover(typeid(NewtMover), args1);
+  sim.add_mover(typeid(NewtMover), args2);
+  effectAdder.addDragToMover(2.0, *sim.movers[0]);
+  // run some steps and chekc that it doesnt crash
+  EXPECT_NO_THROW(sim.update(10));
+};

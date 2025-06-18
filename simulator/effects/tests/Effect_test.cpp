@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "Effect.h"
 #include "Effect2.h"
+#include "EffectTemplated.h"
 #include "EffectTypes/Drag2.h"
 #include "EffectTypes/Drag.h"
 #include "EffectTypes/LorentzEffect.h"
@@ -134,6 +135,55 @@ TEST_F(Drag2EffectFixture, ApplyEffect) {
   // Expected force based on implementation: -dragCoeff * velocity 
   // (strength parameter is not used in the apply method)
   // = -3.0 * (10, 5) = (-30, -15)
+  Vect2 expectedForce = Vect2(-60, -30);
+  Vect2 actualForce = dynamic_cast<NewtMover*>(mover.get())->force_sum.load();
+  
+  float tolX = std::abs(expectedForce.x) * 0.01f;
+  float tolY = std::abs(expectedForce.y) * 0.01f;
+  EXPECT_NEAR(actualForce.x, expectedForce.x, tolX);
+  EXPECT_NEAR(actualForce.y, expectedForce.y, tolY);
+}
+
+// Drag EffectTemplated Tests
+class DragTemplatedEffectFixture : public EffectFixture {
+  protected:
+  // define drag effect with templated parameters
+  using DragTemplated = EffectTemplated<std::tuple<float>, std::tuple<float>>;
+  //function for create effect
+  std::function<void(Mover&, std::tuple<float>, std::tuple<float>)> dragFunc =
+   [](Mover& mover, std::tuple<float> globalParams, std::tuple<float> moverParams) {
+      float strength = std::get<0>(globalParams);
+      float drag_coeff = std::get<0>(moverParams);
+      mover.apply_force(-1*drag_coeff*strength*mover.velocity);
+   };
+  // set global and mover params
+  std::tuple<float> globalParams = {2.0f};
+  std::tuple<float> moverParams = {3.0f};
+  // construct EffectTemplated object
+  DragTemplated dragEffect = DragTemplated(globalParams, dragFunc, "DragTemplated");
+  //helper to setup mover effectParams
+  void setupMoverEffectParams(Mover* mover, std::any params, std::string effectName) {
+    mover->effectParams[effectName] = params;
+  }
+};
+
+TEST_F(DragTemplatedEffectFixture, ConstructorSetsCorrectParameters) {
+  std::unique_ptr<Mover> mover = createMover(Vect2(0, 0), Vect2(10, 5), 2.0f);
+  setupMoverEffectParams(mover.get(), std::make_tuple<float>(3.0f), "DragTemplated");
+  dragEffect.getMoverParams(*mover);
+  EXPECT_EQ(std::get<0>(dragEffect.globalParams), 2.0f);
+  EXPECT_EQ(std::get<0>(dragEffect.moverParams), 3.0f);
+}
+
+TEST_F(DragTemplatedEffectFixture, ApplyEffect) {
+  auto mover = createMover(Vect2(0, 0), Vect2(10, 5), 2.0f);
+  setupMoverEffectParams(mover.get(), std::make_tuple<float>(3.0f), "DragTemplated");
+  // Initial zero force
+  EXPECT_EQ(dynamic_cast<NewtMover*>(mover.get())->force_sum.load(), Vect2(0, 0));
+  // Apply the drag effect thru function pointer
+  auto applyFunction = dragEffect.getApplyFunction();
+  applyFunction(*mover);
+
   Vect2 expectedForce = Vect2(-60, -30);
   Vect2 actualForce = dynamic_cast<NewtMover*>(mover.get())->force_sum.load();
   

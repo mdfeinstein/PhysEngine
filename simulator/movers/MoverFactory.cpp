@@ -35,6 +35,13 @@ void MoverFactory::registerInteraction(std::type_index interaction, std::vector<
   interactionDefaults[interaction] = defaultInteractionArgs;
   reregisterKnownMoverConstructors();
 }
+
+void MoverFactory::registerEffect(std::string effectName, 
+  std::any defaultEffectArgs)
+{
+  effectDefaults[effectName] = defaultEffectArgs;
+  reregisterKnownMoverConstructors();
+}
 // define function to create mover constructors and then register them
 void MoverFactory::registerMoverConstructor(std::type_index type)
 {
@@ -56,8 +63,8 @@ void MoverFactory::registerMoverConstructor(std::type_index type)
   // the client has specified everything they want. this is much the same as
   // default args for a function.
   moverConstructors[type] = [this, type](MoverArgs args,
-                                          std::unordered_map<std::type_index, std::vector<std::any>> interactionParams)
-  {
+                                          std::unordered_map<std::type_index, std::vector<std::any>> interactionParams,
+                                        std::unordered_map<std::string, std::any> effectParams) {
     // apply default values for mover fields
     args.applyDefaults(this->moverDefaults[type]);
 
@@ -99,6 +106,20 @@ void MoverFactory::registerMoverConstructor(std::type_index type)
       }
     }
     mover->interactionParams = std::move(interactionParams);
+
+    // add effect params by looping thru map
+    if (!this->effectDefaults.empty()) {
+    for (const auto &keyValue : this->effectDefaults) { 
+        // name : param list
+        // if interactionParams doesn't have the key, fill it in with the default and move on
+        if (effectParams.find(keyValue.first) == effectParams.end()) 
+        {
+          effectParams[keyValue.first] = keyValue.second;
+        }
+        // else, if in map, we require it was provided completely filled out, so dont touch it 
+      }
+    }
+    mover->effectParams = std::move(effectParams);
     // return unique_ptr to base mover using implicit upcasting
     return mover;
   };
@@ -112,11 +133,12 @@ void MoverFactory::reregisterKnownMoverConstructors() { // to be called when int
 };
 
 std::unique_ptr<Mover> MoverFactory::createMover(std::type_index type, MoverArgs args,
-    std::unordered_map<std::type_index, std::vector<std::any>> interactionParams) {
+    std::unordered_map<std::type_index, std::vector<std::any>> interactionParams,
+    std::unordered_map<std::string, std::any> effectParams) {
   if (moverConstructors.find(type) == moverConstructors.end())
     throw std::invalid_argument("MoverFactory::createMover: type not found");
     
-  auto mover = moverConstructors[type](args, interactionParams);
+  auto mover = moverConstructors[type](args, interactionParams, effectParams);
   mover->id = current_mover_id;
   current_mover_id++;
   return mover;

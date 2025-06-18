@@ -8,6 +8,7 @@
 #include <unordered_map>
 #include <functional>
 #include <memory>
+#include <string>
 
 class MoverFactory
 {
@@ -31,19 +32,28 @@ public:
   void registerInteraction(std::type_index interaction, 
     std::vector<std::any> defaultInteractionArgs);
 
+  void registerEffect(std::string effectName,  
+    std::any defaultEffectArgs);
+
   // define function to create mover constructors and then register them
   void registerMoverConstructor(std::type_index type);
+
   std::unique_ptr<Mover> createMover(std::type_index type, MoverArgs args = MoverArgs(),
-    std::unordered_map<std::type_index, std::vector<std::any>> interactionParams={});
+    std::unordered_map<std::type_index, std::vector<std::any>> interactionParams={},
+    std::unordered_map<std::string, std::any> effectParams={}
+  );
 
   private:
 
   void reregisterKnownMoverConstructors();
   std::unordered_map<std::type_index, MoverArgs> moverDefaults;                   // default args for each kind of mover
   std::unordered_map<std::type_index, std::vector<std::any>> interactionDefaults; // default args for each kind of interaction
+  std::unordered_map<std::string, std::any> effectDefaults;
   // constructors shoudl take btoh MvoerArgs and interaction params as args. interaction params will override the defaults as far as they are defined
-  std::unordered_map<std::type_index, std::function<std::unique_ptr<Mover>(MoverArgs,
-                                                                           std::unordered_map<std::type_index, std::vector<std::any>> interactionParams)>>
-      moverConstructors;
+  std::unordered_map<std::type_index, 
+    std::function<std::unique_ptr<Mover>(MoverArgs,
+    std::unordered_map<std::type_index, std::vector<std::any>> interactionParams,
+    std::unordered_map<std::string, std::any> effectParams
+    )>> moverConstructors;
   int current_mover_id = 0;
 };

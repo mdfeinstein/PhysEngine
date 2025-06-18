@@ -2,7 +2,7 @@
   "name": "Debug GoogleTest",
   "type": "cppdbg",
   "request": "launch",
-  "program": "${workspaceFolder}/build/tests/RigidMover_test",
+  "program": "${workspaceFolder}/build/tests/Effect_Test",
   "args": [],
   "stopAtEntry": false,
   "cwd": "${workspaceFolder}",

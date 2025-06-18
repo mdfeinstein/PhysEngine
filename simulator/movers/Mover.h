@@ -8,6 +8,7 @@
 #include <typeindex>
 #include <optional>
 #include <atomic>
+#include <string>
 
 struct MoverArgs {
     // id is not defined here, since it needs to be assigned by simulator
@@ -37,6 +38,7 @@ class Mover {
     float radius = 1; // for now, all movers will be circular
     float mass = 0;
     std::unordered_map<std::type_index, std::vector<std::any>> interactionParams;
+    std::unordered_map<std::string, std::any> effectParams; //any is tuple of arbitrary type
 
     virtual ~Mover()=default; 
     Mover(MoverArgs args);

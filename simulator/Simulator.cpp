@@ -191,6 +191,9 @@ void Simulator::update() {
                         for (auto& interaction : interactions) { 
                             interaction->interact(&mover1, &mover2); 
                             }
+                        for (auto& interactionWrapper : interactionWrappers) {
+                            interactionWrapper->apply(mover1, mover2);
+                        }
                     }
                     for (auto& effect : effects) {
                         effect->apply(&mover1);

@@ -7,6 +7,7 @@
 #include "SpringInteraction.h"
 #include "ConstantAcceleration.h"
 #include "EffectAdder.h"
+#include "InteractionAdder.h"
 
 class SimulatorFixture : public ::testing::Test {
   protected:
@@ -602,3 +603,38 @@ TEST_F(TemplatedEffectTestFixture, AttractorandDragEffect) {
   // run some steps and chekc that it doesnt crash
   EXPECT_NO_THROW(sim.update(10));
 };
+
+// Templated Interaction tests
+class TemplatedInteractionTestFixture : public ::testing::Test {
+protected:
+  Simulator sim = Simulator(0.01);
+  InteractionAdder interactionAdder = InteractionAdder(&sim);
+  MoverArgs args1 = MoverArgs(Vect2(-5, 0), Vect2(0, 0), Vect2(0, 0), 1.0, 10.0);
+  MoverArgs args2 = MoverArgs(Vect2(5, 0), Vect2(0, 0), Vect2(0, 0), 1.0, 10.0);
+};
+
+TEST_F(TemplatedInteractionTestFixture, GravityInteraction) {
+  // add gravity interaction to simulator
+  interactionAdder.addGravity(1.0, 1e-3f);
+  // add movers to simulator
+  sim.add_mover(typeid(NewtMover), args1);
+  sim.add_mover(typeid(NewtMover), args2);
+  // run simulation for a short time
+  sim.update(10);
+  // Objects should have moved toward each other due to gravity
+  EXPECT_GT(sim.movers[0]->position.x, -5.0);
+  EXPECT_LT(sim.movers[1]->position.x, 5.0);
+}
+
+TEST_F(TemplatedInteractionTestFixture, MultipleInteractionsNoCrash) {
+  // add several interactions to simulator
+  interactionAdder.addGravity(1.0, 1e-3f);
+  interactionAdder.addSpring(2.0, 5.0);
+  interactionAdder.addSoftCollide(1.0, 1.0, 1e-3f, 1.0, 1.0);
+  interactionAdder.addCoulomb(1.0, 1e-3f, 1.0);
+  // add movers to simulator
+  sim.add_mover(typeid(NewtMover), args1);
+  sim.add_mover(typeid(NewtMover), args2);
+  // run some steps and check that it doesn't crash
+  EXPECT_NO_THROW(sim.update(10));
+}

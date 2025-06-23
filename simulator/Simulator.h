@@ -5,6 +5,7 @@
 #include "Vect2.h"
 #include "Effect.h"
 #include "EffectTemplated.h"
+#include "InteractionTemplated.h"
 #include "RigidMovers.h"
 #include "InteractingGroup.h"
 #include "Wall.h"
@@ -38,6 +39,7 @@ public:
     std::vector< std::unique_ptr<Interaction>> interactions;
     std::vector< std::unique_ptr<Effect>> effects;
     std::vector< std::unique_ptr<EffectWrapper>> effectWrappers;
+    std::vector< std::unique_ptr<InteractionWrapper>> interactionWrappers;
     std::vector< std::unique_ptr<RigidConnectedGroup> > groups;
     std::vector<std::unique_ptr<InteractingGroup>> interactingGroups;
     float interaction_min_distance = 1;
@@ -69,6 +71,14 @@ public:
         MoverParamTuple moverParamsDefault
     );
 
+    template<typename GlobalParamTuple, typename MoverParamTuple>
+    void add_interactionWrapper(
+        std::function<void(Mover&, Mover&, GlobalParamTuple, MoverParamTuple, MoverParamTuple)> interactionFunction,
+        std::string name,
+        GlobalParamTuple globalParams,
+        MoverParamTuple moverParamsDefault
+    );
+
     void add_wall(const Vect2& pointA, const Vect2& pointB);
     void update();
     void update(int steps);
@@ -92,4 +102,19 @@ void Simulator::add_effectWrapper(
     );
     // register effect and defaults with factory
     factory.registerEffect(name, moverParamsDefault);
+}
+
+template<typename GlobalParamTuple, typename MoverParamTuple>
+void Simulator::add_interactionWrapper(
+    std::function<void(Mover&, Mover&, GlobalParamTuple, MoverParamTuple, MoverParamTuple)> interactionFunction,
+    std::string name,
+    GlobalParamTuple globalParams,
+    MoverParamTuple moverParamsDefault
+){
+    // construct InteractionWrapper object and push to vector
+    interactionWrappers.push_back(
+        std::make_unique<InteractionWrapper>(globalParams, interactionFunction, name)
+    );
+    // register interaction and defaults with factory
+    factory.registerEffect(name, moverParamsDefault); //for now using the effect map for interactions
 }

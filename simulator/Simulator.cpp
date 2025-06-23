@@ -195,8 +195,8 @@ void Simulator::update() {
                     for (auto& effect : effects) {
                         effect->apply(&mover1);
                     }
-                    for (auto& effectFunction : effectApplyFunctions) {
-                        effectFunction(mover1);
+                    for (auto& effectWrapper : effectWrappers) {
+                        effectWrapper->apply(mover1);
                     }
                 }
             })

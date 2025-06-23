@@ -37,7 +37,7 @@ public:
     std::vector< std::unique_ptr<Wall>> walls;
     std::vector< std::unique_ptr<Interaction>> interactions;
     std::vector< std::unique_ptr<Effect>> effects;
-    std::vector< std::function<void(Mover&)>> effectApplyFunctions;
+    std::vector< std::unique_ptr<EffectWrapper>> effectWrappers;
     std::vector< std::unique_ptr<RigidConnectedGroup> > groups;
     std::vector<std::unique_ptr<InteractingGroup>> interactingGroups;
     float interaction_min_distance = 1;
@@ -62,13 +62,13 @@ public:
     void add_effect(Effect* effect, std::vector<std::any> default_params = std::vector<std::any>());
     
     template<typename GlobalParamTuple, typename MoverParamTuple>
-    void add_effectFunction(
+    void add_effectWrapper(
         std::function<void(Mover&, GlobalParamTuple, MoverParamTuple)> effectFunction,
         std::string name,
         GlobalParamTuple globalParams,
         MoverParamTuple moverParamsDefault
     );
-    
+
     void add_wall(const Vect2& pointA, const Vect2& pointB);
     void update();
     void update(int steps);
@@ -80,19 +80,16 @@ public:
 };
 
 template<typename GlobalParamTuple, typename MoverParamTuple>
-void Simulator::add_effectFunction(
+void Simulator::add_effectWrapper(
     std::function<void(Mover&, GlobalParamTuple, MoverParamTuple)> effectFunction,
     std::string name,
     GlobalParamTuple globalParams,
     MoverParamTuple moverParamsDefault
 ){
-    // construct EffectTemplated object
-    EffectTemplated<GlobalParamTuple, MoverParamTuple> effectTemplated(
-        globalParams, effectFunction, name);
-    // get function pointer to apply function
-    auto applyFunction = effectTemplated.getApplyFunction();
-    // add function pointer to simulator 
-    effectApplyFunctions.push_back(applyFunction);
+    // construct EffectWrapper object and push to vector
+    effectWrappers.push_back(
+        std::make_unique<EffectWrapper>(globalParams, effectFunction, name)
+    );
     // register effect and defaults with factory
-    factory.registerEffect(name, moverParamsDefault); //implicit cast from tuple to any works?
+    factory.registerEffect(name, moverParamsDefault);
 }

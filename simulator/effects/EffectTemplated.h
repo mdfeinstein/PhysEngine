@@ -50,3 +50,51 @@ struct EffectTemplated<std::tuple<GlobalParams...>, std::tuple<MoverParams...>> 
       };
     }
 };
+
+struct EffectWrapper {
+    // type erased wrapper for EffectTemplated. Should implement apply.
+
+    template <typename... GlobalParams, typename... MoverParams>
+    EffectWrapper(EffectTemplated<std::tuple<GlobalParams...>, std::tuple<MoverParams...>> effectTemplated) : 
+        conceptPtr(std::make_unique<Model<std::tuple<GlobalParams...>, std::tuple<MoverParams...>>>(effectTemplated)) {};
+
+    template <typename GlobalParamTuple, typename MoverParamTuple>
+    EffectWrapper(GlobalParamTuple globalParams, 
+        std::function<void(Mover&, GlobalParamTuple, MoverParamTuple)> applyFunction, 
+        std::string name) : 
+        conceptPtr(
+            std::make_unique<Model<GlobalParamTuple, MoverParamTuple>>(
+                EffectTemplated<GlobalParamTuple, MoverParamTuple>(globalParams, applyFunction, name)
+            )) {};
+
+    void apply(Mover& mover) {
+        conceptPtr->apply(mover);
+    }
+
+    std::string getName() {
+        return conceptPtr->getName();
+    }
+
+
+private:
+    struct Concept {
+        virtual ~Concept() = default;
+        virtual void apply(Mover& mover) = 0;
+        virtual std::string getName() = 0;
+    };
+
+    template <typename GlobalParamTuple, typename MoverParamTuple>
+    struct Model : Concept {
+        EffectTemplated<GlobalParamTuple, MoverParamTuple> effect;
+        Model(EffectTemplated<GlobalParamTuple, MoverParamTuple> effect) : effect(effect) {};
+        void apply(Mover& mover) override {
+            effect.apply(mover);
+        }
+        std::string getName() override {
+            return effect.name;
+        }
+    };
+
+    std::unique_ptr<Concept> conceptPtr;
+
+};

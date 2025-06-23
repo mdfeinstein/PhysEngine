@@ -42,13 +42,13 @@ struct EffectAdder {
     std::string name = "Drag";
     std::tuple<float> globalParams = std::make_tuple(strength);
     std::tuple<float> moverParams = createMoverDragParams(default_drag_coeff);
-    sim->add_effectFunction<std::tuple<float>, std::tuple<float>>(
+    sim->add_effectWrapper<std::tuple<float>, std::tuple<float>>(
       func, name, globalParams, moverParams
     );
   }
 
   EffectTemplated<std::tuple<float>, std::tuple<float>> createDragTemplated(float strength, float default_drag_coeff) {
-    // optionally provide simulator, otherwise use this->sim. if neither, throw error
+
     auto func = [](Mover& mover, std::tuple<float> globalParams, std::tuple<float> moverParams) {
           float drag_coeff = std::get<0>(moverParams);
           float strength = std::get<0>(globalParams);
@@ -88,7 +88,7 @@ struct EffectAdder {
     std::string name = "Lorentz";
     std::tuple<float> globalParams = std::make_tuple(strength);
     std::tuple<float> moverParams = createMoverLorentzParams(default_charge);
-    sim->add_effectFunction<std::tuple<float>, std::tuple<float>>(
+    sim->add_effectWrapper<std::tuple<float>, std::tuple<float>>(
       func, name, globalParams, moverParams
     );
   }
@@ -123,10 +123,139 @@ struct EffectAdder {
     std::string name = "Attractor";
     std::tuple<float, Vect2, float> globalParams = std::make_tuple(strength, position, min_distance);
     std::tuple<> moverParams = createMoverAttractorParams();
-    sim->add_effectFunction<std::tuple<float, Vect2, float>, std::tuple<>>(
+    sim->add_effectWrapper<std::tuple<float, Vect2, float>, std::tuple<>>(
       func, name, globalParams, moverParams
     );
   }
       
+  //ConstantForce
+  std::tuple<float> createMoverConstantForceParams(float scale_factor = 1.0f) {
+    //provides interface for creating mover params for ConstantForce effect
+    return std::make_tuple(scale_factor);
+  }
+
+  void addConstantForceToMover(float scale_factor, Mover& mover) {
+    mover.effectParams["ConstantForce"] = createMoverConstantForceParams(scale_factor);
+  }
+  void addConstantForce(Vect2 force_vector, float default_scale_factor = 1.0f, Simulator* sim = nullptr) {
+    // optionally provide simulator, otherwise use this->sim. if neither, throw error
+    if (sim == nullptr)
+      if (this->sim == nullptr)
+        throw std::invalid_argument("EffectAdder::addConstantForce: simulator not provided");
+      else sim = this->sim;
+
+    auto func = [](Mover& mover, std::tuple<Vect2> globalParams, std::tuple<float> moverParams) {
+          float scale_factor = std::get<0>(moverParams);
+          Vect2 force_vector = std::get<0>(globalParams);
+          mover.apply_force(force_vector * scale_factor);
+        };
+    std::string name = "ConstantForce";
+    std::tuple<Vect2> globalParams = std::make_tuple(force_vector);
+    std::tuple<float> moverParams = createMoverConstantForceParams(default_scale_factor);
+    sim->add_effectWrapper<std::tuple<Vect2>, std::tuple<float>>(
+      func, name, globalParams, moverParams
+    );
+  }
+  EffectTemplated<std::tuple<Vect2>, std::tuple<float>> createConstantForceTemplated(Vect2 force_vector, float default_scale_factor = 1.0f) {
+    auto func = [](Mover& mover, std::tuple<Vect2> globalParams, std::tuple<float> moverParams) {
+          float scale_factor = std::get<0>(moverParams);
+          Vect2 force_vector = std::get<0>(globalParams);
+          mover.apply_force(force_vector * scale_factor);
+        };
+    std::string name = "ConstantForceTemplated";
+    std::tuple<Vect2> globalParams = std::make_tuple(force_vector);
+    std::tuple<float> moverParams = createMoverConstantForceParams(default_scale_factor);
+    return EffectTemplated<std::tuple<Vect2>, std::tuple<float>>(globalParams, func, name);
+  }
+
+  //ForceField
+  std::tuple<float> createMoverForceFieldParams(float scale_factor = 1.0f) {
+    //provides interface for creating mover params for ForceField effect
+    return std::make_tuple(scale_factor);
+  }
+
+  void addForceFieldToMover(float scale_factor, Mover& mover) {
+    mover.effectParams["ForceField"] = createMoverForceFieldParams(scale_factor);
+  }
+  void addForceField(std::function<Vect2(Vect2)> field_function, float default_scale_factor = 1.0f, Simulator* sim = nullptr) {
+    // optionally provide simulator, otherwise use this->sim. if neither, throw error
+    if (sim == nullptr)
+      if (this->sim == nullptr)
+        throw std::invalid_argument("EffectAdder::addForceField: simulator not provided");
+      else sim = this->sim;
+
+    auto func = [](Mover& mover, std::tuple<std::function<Vect2(Vect2)>> globalParams, std::tuple<float> moverParams) {
+          float scale_factor = std::get<0>(moverParams);
+          auto field_function = std::get<0>(globalParams);
+          Vect2 field_force = field_function(mover.position);
+          mover.apply_force(field_force * scale_factor);
+        };
+    std::string name = "ForceField";
+    std::tuple<std::function<Vect2(Vect2)>> globalParams = std::make_tuple(field_function);
+    std::tuple<float> moverParams = createMoverForceFieldParams(default_scale_factor);
+    sim->add_effectWrapper<std::tuple<std::function<Vect2(Vect2)>>, std::tuple<float>>(
+      func, name, globalParams, moverParams
+    );
+  }
+  EffectTemplated<std::tuple<std::function<Vect2(Vect2)>>, std::tuple<float>> createForceFieldTemplated(std::function<Vect2(Vect2)> field_function, float default_scale_factor = 1.0f) {
+    auto func = [](Mover& mover, std::tuple<std::function<Vect2(Vect2)>> globalParams, std::tuple<float> moverParams) {
+          float scale_factor = std::get<0>(moverParams);
+          auto field_function = std::get<0>(globalParams);
+          Vect2 field_force = field_function(mover.position);
+          mover.apply_force(field_force * scale_factor);
+        };
+    std::string name = "ForceFieldTemplated";
+    std::tuple<std::function<Vect2(Vect2)>> globalParams = std::make_tuple(field_function);
+    std::tuple<float> moverParams = createMoverForceFieldParams(default_scale_factor);
+    return EffectTemplated<std::tuple<std::function<Vect2(Vect2)>>, std::tuple<float>>(globalParams, func, name);
+  }
+
+  //TimeVaryingForce
+  std::tuple<float> createMoverTimeVaryingForceParams(float scale_factor = 1.0f) {
+    //provides interface for creating mover params for TimeVaryingForce effect
+    return std::make_tuple(scale_factor);
+  }
+
+  void addTimeVaryingForceToMover(float scale_factor, Mover& mover) {
+    mover.effectParams["TimeVaryingForce"] = createMoverTimeVaryingForceParams(scale_factor);
+  }
+
+  void addTimeVaryingForce(std::function<Vect2(float)> force_function,
+     float& current_time,
+     float default_scale_factor = 1.0f,
+    Simulator* sim = nullptr) {
+    // optionally provide simulator, otherwise use this->sim. if neither, throw error
+    if (sim == nullptr)
+      if (this->sim == nullptr)
+        throw std::invalid_argument("EffectAdder::addTimeVaryingForce: simulator not provided");
+      else sim = this->sim;
+
+    auto func = [](Mover& mover, std::tuple<std::function<Vect2(float)>, float&> globalParams, std::tuple<float> moverParams) {
+          float scale_factor = std::get<0>(moverParams);
+          auto force_function = std::get<0>(globalParams);
+          float& current_time = std::get<1>(globalParams);
+          Vect2 current_force = force_function(current_time);
+          mover.apply_force(current_force * scale_factor);
+        };    std::string name = "TimeVaryingForce";
+    std::tuple<std::function<Vect2(float)>, float&> globalParams = std::forward_as_tuple(force_function, current_time);
+    std::tuple<float> moverParams = createMoverTimeVaryingForceParams(default_scale_factor);
+    sim->add_effectWrapper<std::tuple<std::function<Vect2(float)>, float&>, std::tuple<float>>(
+      func, name, globalParams, moverParams
+    );
+  }
+
+  EffectTemplated<std::tuple<std::function<Vect2(float)>, float&>, std::tuple<float>> createTimeVaryingForceTemplated(
+    std::function<Vect2(float)> force_function, float& current_time, float default_scale_factor = 1.0f) {
+    auto func = [](Mover& mover, std::tuple<std::function<Vect2(float)>, float&> globalParams, std::tuple<float> moverParams) {
+          float scale_factor = std::get<0>(moverParams);
+          auto force_function = std::get<0>(globalParams);
+          float& current_time = std::get<1>(globalParams);
+          Vect2 current_force = force_function(current_time);
+          mover.apply_force(current_force * scale_factor);
+        };    std::string name = "TimeVaryingForceTemplated";
+    std::tuple<std::function<Vect2(float)>, float&> globalParams = std::forward_as_tuple(force_function, current_time);
+    std::tuple<float> moverParams = createMoverTimeVaryingForceParams(default_scale_factor);
+    return EffectTemplated<std::tuple<std::function<Vect2(float)>, float&>, std::tuple<float>>(globalParams, func, name);
+  }
 };
 

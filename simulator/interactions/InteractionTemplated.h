@@ -15,8 +15,6 @@ struct InteractionTemplated;
 template <typename... GlobalParams, typename... MoverParams>
 struct InteractionTemplated<std::tuple<GlobalParams...>, std::tuple<MoverParams...>> {
     std::tuple<GlobalParams...> globalParams;
-    std::tuple<MoverParams...> moverParams1;
-    std::tuple<MoverParams...> moverParams2;
     std::function<void(Mover&, Mover&, std::tuple<GlobalParams...>, std::tuple<MoverParams...>, std::tuple<MoverParams...>)> applyFunction;
     std::string name;
 
@@ -26,14 +24,13 @@ struct InteractionTemplated<std::tuple<GlobalParams...>, std::tuple<MoverParams.
         std::string name)
         : globalParams(globalParams), applyFunction(applyFunction), name(name) {}
 
-    void getMoverParams(Mover& mover1, Mover& mover2) {
-        moverParams1 = std::any_cast<std::tuple<MoverParams...>>(mover1.effectParams[this->name]);
-        moverParams2 = std::any_cast<std::tuple<MoverParams...>>(mover2.effectParams[this->name]);
+
+    std::tuple<MoverParams...> getMoverParams(Mover& mover) {
+        return std::any_cast<std::tuple<MoverParams...>>(mover.effectParams[this->name]);
     }
 
     void apply(Mover& mover1, Mover& mover2) {
-        getMoverParams(mover1, mover2);
-        applyFunction(mover1, mover2, globalParams, moverParams1, moverParams2);
+        applyFunction(mover1, mover2, globalParams, getMoverParams(mover1), getMoverParams(mover2));
     }
 };
 

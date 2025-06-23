@@ -18,7 +18,7 @@ struct EffectTemplated;
 template <typename... GlobalParams, typename... MoverParams>
 struct EffectTemplated<std::tuple<GlobalParams...>, std::tuple<MoverParams...>> {
     std::tuple<GlobalParams...> globalParams;
-    std::tuple<MoverParams...> moverParams;
+    // std::tuple<MoverParams...> moverParams;
     std::function<void(Mover&, std::tuple<GlobalParams...>, 
         std::tuple<MoverParams...>)> applyFunction;
     std::string name;
@@ -30,16 +30,16 @@ struct EffectTemplated<std::tuple<GlobalParams...>, std::tuple<MoverParams...>> 
             std::string name) :
         globalParams(globalParams), applyFunction(applyFunction), name(name) {};
         
-    void getMoverParams(Mover& mover) {
+    std::tuple<MoverParams...> getMoverParams(Mover& mover) {
         // moverParams = unpack_any_vector_impl<MoverParams...>(
         //   mover.effectParams[this->name], // get vector of (any) params from mover  
         //     std::index_sequence_for<MoverParams...>{});
-        moverParams = std::any_cast<std::tuple<MoverParams...>>(mover.effectParams[this->name]);
+        return std::any_cast<std::tuple<MoverParams...>>(mover.effectParams[this->name]);
     }
     
     void apply(Mover& mover){
-        getMoverParams(mover);
-        applyFunction(mover, globalParams, moverParams);
+        // getMoverParams(mover);
+        applyFunction(mover, globalParams, getMoverParams(mover));
     }
 
     std::function<void(Mover&)> getApplyFunction() {

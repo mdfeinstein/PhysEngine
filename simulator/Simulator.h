@@ -1,6 +1,5 @@
 #pragma once
 #include "Mover.h"
-#include "Interaction.h"
 #include "MoverFactory.h"
 #include "Vect2.h"
 #include "Effect.h"
@@ -36,8 +35,6 @@ public:
     MoverFactory factory = MoverFactory();
     std::vector< std::unique_ptr<Mover>> movers;
     std::vector< std::unique_ptr<Wall>> walls;
-    std::vector< std::unique_ptr<Interaction>> interactions;
-    std::vector< std::unique_ptr<Effect>> effects;
     std::vector< std::unique_ptr<EffectWrapper>> effectWrappers;
     std::vector< std::unique_ptr<InteractionWrapper>> interactionWrappers;
     std::vector< std::unique_ptr<RigidConnectedGroup> > groups;
@@ -60,8 +57,6 @@ public:
     void add_interactingGroup(std::vector<int>& mover_ids, std::function<void(Mover&, Mover&)> interaction);
     void remove_interactingGroup(int id);
     void remove_interactingGroupByMoverId(int moverId); //find group with moverId and remove it
-    void add_interaction(Interaction* interaction, std::vector<std::any> default_params = std::vector<std::any>());
-    void add_effect(Effect* effect, std::vector<std::any> default_params = std::vector<std::any>());
     
     template<typename GlobalParamTuple, typename MoverParamTuple>
     void add_effectWrapper(

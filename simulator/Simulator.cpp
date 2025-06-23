@@ -136,35 +136,6 @@ void Simulator::delete_group(RigidConnectedGroup* group) {
     remove_movers(mover_ids);
 };
 
-void Simulator::add_interaction(Interaction* interaction, std::vector<std::any> default_params) {
-    if (default_params.size() != interaction->paramCount) {
-        throw std::invalid_argument("Simulator::add_interaction: incorrect number of default parameters. Expected " + 
-                                    std::to_string(interaction->paramCount) + " parameter(s).");
-    }
-    auto smartPtr = std::unique_ptr<Interaction>(interaction);
-    smartPtr->min_distance = interaction_min_distance;
-    interactions.push_back(std::move(smartPtr));
-    factory.registerInteraction(typeid(*interaction), default_params);
-    //add default params to all existingmovers
-    for (auto& mover : movers) {
-        mover->interactionParams[typeid(*interaction)] = default_params;
-    }
-}
-
-void Simulator::add_effect(Effect* effect, std::vector<std::any> default_params) {
-    if (default_params.size() != effect->paramCount) {
-        throw std::invalid_argument("Simulator::add_effect: incorrect number of default parameters. Expected " + 
-                                    std::to_string(effect->paramCount) + " parameter(s).");
-    }
-    auto smartPtr = std::unique_ptr<Effect>(effect);
-    effects.push_back(std::move(smartPtr));
-    factory.registerInteraction(typeid(*effect), default_params);
-    //add default params to all existing movers
-    for (auto& mover : movers) {
-        mover->interactionParams[typeid(*effect)] = default_params;
-    }
-}
-
 void Simulator::add_interactingGroup(std::vector<int>& mover_ids, std::function<void(Mover&, Mover&)> interaction) {
     auto smartPtr = std::make_unique<InteractingGroup>(*this, mover_ids, interaction);
     interactingGroups.push_back(std::move(smartPtr));
@@ -188,15 +159,9 @@ void Simulator::update() {
                     Mover& mover1 = *movers[i];
                     for (int j = i+1; j < movers.size(); j++){
                         Mover& mover2 = *movers[j];
-                        for (auto& interaction : interactions) { 
-                            interaction->interact(&mover1, &mover2); 
-                            }
                         for (auto& interactionWrapper : interactionWrappers) {
                             interactionWrapper->apply(mover1, mover2);
                         }
-                    }
-                    for (auto& effect : effects) {
-                        effect->apply(&mover1);
                     }
                     for (auto& effectWrapper : effectWrappers) {
                         effectWrapper->apply(mover1);
@@ -256,12 +221,12 @@ void Simulator::update_unithread() {
         Mover& mover1 = *movers[i];
         for (int j = i+1; j < movers.size(); j++){ 
             Mover& mover2 = *movers[j];
-            for (auto& interaction : interactions) { 
-                interaction->interact(&mover1, &mover2); 
-                } //why pass pointers? maybe just pass refs... would need to change in Interaction
+            for (auto& interactionWrapper : interactionWrappers) {
+                interactionWrapper->apply(mover1, mover2);
+            }
         }
-        for (auto& effect : effects) {
-            effect->apply(&mover1);
+        for (auto& effectWrapper : effectWrappers) {
+            effectWrapper->apply(mover1);
         }
         mover1.update(global_dt);
     }
@@ -283,8 +248,8 @@ void Simulator::reset() {
     //clear all objects and reset the timer
     movers.clear();
     walls.clear();
-    effects.clear();
-    interactions.clear();
+    effectWrappers.clear();
+    interactionWrappers.clear();
     groups.clear();
     interactingGroups.clear();
     current_id = 0;

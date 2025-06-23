@@ -65,7 +65,7 @@ set(ALL_LIBRARIES
   )
 
 # add_subdirectory(apps/pybindApp)
-add_subdirectory(apps/standalone1)
+# add_subdirectory(apps/standalone1)
 
 set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 

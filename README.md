@@ -6,5 +6,5 @@ PyBind11 is used to create some python bindings, allowing the simulation to be c
 
 # Demoed Features
 
-A Spring-like interaction along iwht a soft collide interaction, with 500 movers
-![Basic Demo](showcase/500 movers and spring.mp4)
+A Spring-like interaction along with a soft collide interaction, with 500 movers
+![Basic Demo](showcase/500_movers_and_spring.gif)

@@ -5,6 +5,12 @@
 #include <any>
 #include <deque>
 #include <memory>
+#include "../effects/EffectAdder.h"
+#include "../interactions/InteractionAdder.h"
+#include "../dataStructs/Vect2.h"
+#include "effects/EffectAdder.h"
+#include "interactions/InteractionAdder.h"
+#include "dataStructs/Vect2.h"
 
 //forward declare SimulatorCommander
 class SimulatorCommander;
@@ -172,6 +178,74 @@ struct DeleteGroup : public SimulatorCommand {
   }
 };
 
+// New templated Effect command
+template<typename GlobalParamTuple, typename MoverParamTuple>
+struct AddEffectCommand : SimulatorCommand {
+    std::function<void(Mover&, GlobalParamTuple, MoverParamTuple)> effectFunction;
+    std::string effectName;
+    GlobalParamTuple globalParams;
+    MoverParamTuple moverParamsDefault;
+
+    AddEffectCommand(const std::vector<std::any>& args) : SimulatorCommand(args) {
+        name = "AddEffect";
+        argParse();
+    }
+
+    void invoke(Simulator& simulator) override {
+        simulator.add_effectWrapper<GlobalParamTuple, MoverParamTuple>(
+            effectFunction,
+            effectName,
+            globalParams,
+            moverParamsDefault
+        );
+    }
+
+    void argParse() override {
+        if (args.size() != 4) {
+            throw std::invalid_argument("AddEffectCommand: incorrect number of arguments. Should be 4 (function, name, globalParams, defaultParams). Got "
+                + std::to_string(args.size()));
+        }
+        effectFunction = std::any_cast<std::function<void(Mover&, GlobalParamTuple, MoverParamTuple)>>(args[0]);
+        effectName = std::any_cast<std::string>(args[1]);
+        globalParams = std::any_cast<GlobalParamTuple>(args[2]);
+        moverParamsDefault = std::any_cast<MoverParamTuple>(args[3]);
+    }
+};
+
+// New templated Interaction command
+template<typename GlobalParamTuple, typename MoverParamTuple>
+struct AddInteractionCommand : SimulatorCommand {
+    std::function<void(Mover&, Mover&, GlobalParamTuple, MoverParamTuple, MoverParamTuple)> interactionFunction;
+    std::string interactionName;
+    GlobalParamTuple globalParams;
+    MoverParamTuple moverParamsDefault;
+
+    AddInteractionCommand(const std::vector<std::any>& args) : SimulatorCommand(args) {
+        name = "AddInteraction";
+        argParse();
+    }
+
+    void invoke(Simulator& simulator) override {
+        simulator.add_interactionWrapper<GlobalParamTuple, MoverParamTuple>(
+            interactionFunction,
+            interactionName,
+            globalParams,
+            moverParamsDefault
+        );
+    }
+
+    void argParse() override {
+        if (args.size() != 4) {
+            throw std::invalid_argument("AddInteractionCommand: incorrect number of arguments. Should be 4 (function, name, globalParams, defaultParams). Got "
+                + std::to_string(args.size()));
+        }
+        interactionFunction = std::any_cast<std::function<void(Mover&, Mover&, GlobalParamTuple, MoverParamTuple, MoverParamTuple)>>(args[0]);
+        interactionName = std::any_cast<std::string>(args[1]);
+        globalParams = std::any_cast<GlobalParamTuple>(args[2]);
+        moverParamsDefault = std::any_cast<MoverParamTuple>(args[3]);
+    }
+};
+
 template <std::size_t Index, typename... Args>
 using NthType = typename std::tuple_element<Index, std::tuple<Args...>>::type;
 
@@ -192,66 +266,163 @@ T* make_instance_raw(std::tuple<Args...> args) {
     }, args);
 }
 
-template <class InteractionType, typename... InteractionArgs>
-struct addInteraction : SimulatorCommand {
-  std::vector<std::any> interaction_args;
-  std::vector<std::any> default_params;
+// Commands for standard interactions using InteractionAdder
+struct AddSpringCommand : SimulatorCommand {
+  float k;
+  float x0;
 
-  addInteraction(const std::vector<std::any>& args) 
-    : SimulatorCommand(args) { 
-    name = "AddInteraction";
+  AddSpringCommand(const std::vector<std::any>& args) : SimulatorCommand(args) {
+    name = "AddSpring";
     argParse();
   }
   void invoke(Simulator& simulator) override {
-    auto interaction_args_tuple = castArgs<InteractionArgs...>(interaction_args);
-    InteractionType* interaction = make_instance_raw<InteractionType>(interaction_args_tuple);
-    simulator.add_interaction(interaction, default_params);
+    InteractionAdder::addSpring(simulator, k, x0);
   }
   void argParse() override {
-    if (args.size()==1) {
-      interaction_args = std::any_cast<std::vector<std::any>>(args[0]);
-      default_params = {};
+    if (args.size() != 2) {
+      throw std::invalid_argument("AddSpring: incorrect number of arguments. Should be 2 (k, x0). Got "
+        + std::to_string(args.size()));
     }
-    else if (args.size()==2) {
-      interaction_args = std::any_cast<std::vector<std::any>>(args[0]);
-      default_params = std::any_cast<std::vector<std::any>>(args[1]);
-    }
-    else {
-      throw std::invalid_argument("AddInteraction: incorrect number of arguments. should be 1 or 2. Got "
-        + std::to_string(args.size()) + ". args should be vector<any> or vector<any>, vector<any>");
-    }
-  };
+    k = std::any_cast<float>(args[0]);
+    x0 = std::any_cast<float>(args[1]);
+  }
 };
 
-template <class EffectType, typename... EffectArgs>
-struct addEffect : SimulatorCommand {
-  std::vector<std::any> effect_args;
-  std::vector<std::any> default_params;
+struct AddGravityCommand : SimulatorCommand {
+  float G;
+  float min_distance;
 
-  addEffect(const std::vector<std::any>& args) 
-    : SimulatorCommand(args) { 
-    name = "AddEffect";
+  AddGravityCommand(const std::vector<std::any>& args) : SimulatorCommand(args) {
+    name = "AddGravity";
     argParse();
   }
   void invoke(Simulator& simulator) override {
-    auto effect_args_tuple = castArgs<EffectArgs...>(effect_args); 
-    EffectType* effect = make_instance_raw<EffectType>(effect_args_tuple);
-    simulator.add_effect(effect, default_params); 
+    InteractionAdder::addGravity(simulator, G, min_distance);
   }
   void argParse() override {
-    if (args.size()==1) {
-      effect_args = std::any_cast<std::vector<std::any>>(args[0]);
-      default_params = {};
+    if (args.size() != 2) {
+      throw std::invalid_argument("AddGravity: incorrect number of arguments. Should be 2 (G, min_distance). Got "
+        + std::to_string(args.size()));
     }
-    else if (args.size()==2) {
-      effect_args = std::any_cast<std::vector<std::any>>(args[0]);
-      default_params = std::any_cast<std::vector<std::any>>(args[1]);
+    G = std::any_cast<float>(args[0]);
+    min_distance = std::any_cast<float>(args[1]);
+  }
+};
+
+struct AddSoftCollideCommand : SimulatorCommand {
+  float springStrength;
+  float repulsionStrength;
+  float min_distance;
+  float defaultSpringStrength;
+  float defaultRepulsionStrength;
+
+  AddSoftCollideCommand(const std::vector<std::any>& args) : SimulatorCommand(args) {
+    name = "AddSoftCollide";
+    argParse();
+  }
+  void invoke(Simulator& simulator) override {
+    InteractionAdder::addSoftCollide(simulator, springStrength, repulsionStrength, min_distance, defaultSpringStrength, defaultRepulsionStrength);
+  }
+  void argParse() override {
+    if (args.size() != 5) {
+      throw std::invalid_argument("AddSoftCollide: incorrect number of arguments. Should be 5. Got "
+        + std::to_string(args.size()));
     }
-    else {
-      throw std::invalid_argument("AddEffect: incorrect number of arguments. should be 1 or 2. Got "
-        + std::to_string(args.size()) + ". args should be vector<any> or vector<any>, vector<any>");
+    springStrength = std::any_cast<float>(args[0]);
+    repulsionStrength = std::any_cast<float>(args[1]);
+    min_distance = std::any_cast<float>(args[2]);
+    defaultSpringStrength = std::any_cast<float>(args[3]);
+    defaultRepulsionStrength = std::any_cast<float>(args[4]);
+  }
+};
+
+struct AddCoulombCommand : SimulatorCommand {
+  float K;
+  float min_distance;
+  float defaultCharge;
+
+  AddCoulombCommand(const std::vector<std::any>& args) : SimulatorCommand(args) {
+    name = "AddCoulomb";
+    argParse();
+  }
+  void invoke(Simulator& simulator) override {
+    InteractionAdder::addCoulomb(simulator, K, min_distance, defaultCharge);
+  }
+  void argParse() override {
+    if (args.size() != 3) {
+      throw std::invalid_argument("AddCoulomb: incorrect number of arguments. Should be 3 (K, min_distance, defaultCharge). Got "
+        + std::to_string(args.size()));
     }
-  };
+    K = std::any_cast<float>(args[0]);
+    min_distance = std::any_cast<float>(args[1]);
+    defaultCharge = std::any_cast<float>(args[2]);
+  }
+};
+
+// Commands for standard effects using EffectAdder
+struct AddAttractorCommand : SimulatorCommand {
+  float strength;
+  Vect2 position;
+  float min_distance;
+
+  AddAttractorCommand(const std::vector<std::any>& args) : SimulatorCommand(args) {
+    name = "AddAttractor";
+    argParse();
+  }
+  void invoke(Simulator& simulator) override {
+    EffectAdder::addAttractor(simulator, strength, position, min_distance);
+  }
+  void argParse() override {
+    if (args.size() != 3) {
+      throw std::invalid_argument("AddAttractor: incorrect number of arguments. Should be 3 (strength, position, min_distance). Got "
+        + std::to_string(args.size()));
+    }
+    strength = std::any_cast<float>(args[0]);
+    position = std::any_cast<Vect2>(args[1]);
+    min_distance = std::any_cast<float>(args[2]);
+  }
+};
+
+struct AddConstantForceCommand : SimulatorCommand {
+  Vect2 force_vector;
+  float default_scale_factor;
+
+  AddConstantForceCommand(const std::vector<std::any>& args) : SimulatorCommand(args) {
+    name = "AddConstantForce";
+    argParse();
+  }
+  void invoke(Simulator& simulator) override {
+    EffectAdder::addConstantForce(simulator, force_vector, default_scale_factor);
+  }
+  void argParse() override {
+    if (args.size() != 2) {
+      throw std::invalid_argument("AddConstantForce: incorrect number of arguments. Should be 2 (force_vector, default_scale_factor). Got "
+        + std::to_string(args.size()));
+    }
+    force_vector = std::any_cast<Vect2>(args[0]);
+    default_scale_factor = std::any_cast<float>(args[1]);
+  }
+};
+
+struct AddDragCommand : SimulatorCommand {
+  float strength;
+  float default_drag_coeff;
+
+  AddDragCommand(const std::vector<std::any>& args) : SimulatorCommand(args) {
+    name = "AddDrag";
+    argParse();
+  }
+  void invoke(Simulator& simulator) override {
+    EffectAdder::addDrag(simulator, strength, default_drag_coeff);
+  }
+  void argParse() override {
+    if (args.size() != 2) {
+      throw std::invalid_argument("AddDrag: incorrect number of arguments. Should be 2 (strength, default_drag_coeff). Got "
+        + std::to_string(args.size()));
+    }
+    strength = std::any_cast<float>(args[0]);
+    default_drag_coeff = std::any_cast<float>(args[1]);
+  }
 };
 
 struct AffectMover : public SimulatorCommand { 

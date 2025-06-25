@@ -3,6 +3,8 @@
 #include <wx/spinctrl.h>
 #include <wx/dcbuffer.h>
 #include "Simulator.h"
+#include "InteractionAdder.h"
+#include "EffectAdder.h"
 #include "Attractor.h"
 #include "ForceField.h"
 #include "SpringInteraction.h"
@@ -277,24 +279,21 @@ void MyFrame::StartSimulation() {
     wxButton* stopButton = new wxButton(this, wxID_STOP, "Stop", wxPoint(700, 10), wxSize(80, 30));
     stopButton->Bind(wxEVT_BUTTON, &MyFrame::OnStop, this);
     Layout(); // Recalculate layout
-    // actual sim logic
-    // simulator = Simulator(0.1);
-   //enable interactions
-    simulator.add_interaction(new Interaction()); //solves a strange issue in gui when no interactions are added
+    // Add interactions using InteractionAdder
     if (springEnabled) {
-        simulator.add_interaction(new Spring(k, x0));
+        InteractionAdder::addSpring(simulator, k, x0);
     }
     if (gravityEnabled) {
-        simulator.add_interaction(new Gravity(G));
+        InteractionAdder::addGravity(simulator, G);
     }
     if (softCollideEnabled) {
-        simulator.add_interaction(new SoftCollide(springStrength, repulsionStrength), 
-            std::vector<std::any>({std::any(1.0f), std::any(1.0f)}));
+        InteractionAdder::addSoftCollide(simulator, springStrength, repulsionStrength);
     }
     if (coulombEnabled) {
-        simulator.add_interaction(new Coulomb(coulombK), std::vector<std::any>({std::any(1.0f)}));
+        InteractionAdder::addCoulomb(simulator, coulombK);
     }
-    // simulator.add_effect(new Attractor(100000, Vect2(X/2,Y/2), 10)); 
+   // Add effects using EffectAdder
+   //EffectAdder::addAttractor(simulator, 100000, Vect2(X/2,Y/2), 10);
 
 
     simulator.factory.registerMoverDefaults(typeid(NewtMover), MoverArgs(Vect2(), Vect2(), Vect2(), 15, 1));
@@ -329,9 +328,14 @@ void MyFrame::StartSimulation() {
         float mass = randRange(minMass, maxMass);
         float radius = 1 * pow(mass, 0.5) + 3;
         float charge = randRange(-maxCharge, maxCharge);
-        std::unordered_map<std::type_index, std::vector<std::any>> interactionParams;
-        interactionParams[typeid(Coulomb)] = std::vector<std::any>({std::any(charge)});
-        simulator.add_mover(typeid(NewtMover), MoverArgs(pos, vel, Vect2(), radius, mass), interactionParams);
+        
+        // Create mover first
+        int mover_id = simulator.add_mover(typeid(NewtMover), MoverArgs(pos, vel, Vect2(), radius, mass));
+        Mover* mover = simulator.find_mover(mover_id)->get();  
+        // Add interaction parameters to the mover if needed
+        if (coulombEnabled) {
+            InteractionAdder::addCoulombToMover(charge, *mover);
+        }
 
     }
     // simulator.add_mover(typeid(NewtMover), MoverArgs(Vect2(50,50), Vect2(0,0))); 

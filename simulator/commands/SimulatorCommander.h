@@ -7,6 +7,8 @@
 #include "SoftCollideInteraction.h"
 #include "LorentzEffect.h"
 #include "Drag.h"
+#include "EffectAdder.h"
+#include "InteractionAdder.h"
 
 #include <string>
 #include <any>
@@ -31,17 +33,64 @@ public:
   void addCommandCreateGroup(std::vector<int> moverIds);
   void addCommandUngroup(int id);
   void addCommandDeleteGroup(int id);
-  template <class InteractionType, typename... InteractionArgs>
-  void addCommandAddInteraction(std::vector<std::any> interaction_args, std::vector<std::any> default_params = {});
-  void addCommandAddSpring(float k = 1, float x0 = 100);
-  void addCommandAddCoulomb(float k = 1, float charge = 0);
+  // New templated base methods for effects and interactions
+  template<typename GlobalParamTuple, typename MoverParamTuple>
+  void addCommandAddEffect(
+      std::function<void(Mover&, GlobalParamTuple, MoverParamTuple)> effectFunction,
+      const std::string& effectName,
+      const GlobalParamTuple& globalParams,
+      const MoverParamTuple& moverParamsDefault
+  ) {
+      addCommand<AddEffectCommand<GlobalParamTuple, MoverParamTuple>>({
+          effectFunction,
+          effectName,
+          globalParams,
+          moverParamsDefault
+      });
+  }
+
+  template<typename GlobalParamTuple, typename MoverParamTuple>
+  void addCommandAddInteraction(
+      std::function<void(Mover&, Mover&, GlobalParamTuple, MoverParamTuple, MoverParamTuple)> interactionFunction,
+      const std::string& interactionName,
+      const GlobalParamTuple& globalParams,
+      const MoverParamTuple& moverParamsDefault
+  ) {
+      addCommand<AddInteractionCommand<GlobalParamTuple, MoverParamTuple>>({
+          interactionFunction,
+          interactionName,
+          globalParams,
+          moverParamsDefault
+      });
+  }
+
+  // Effect implementations using new system
+  void addCommandAddDragEffect(float strength = 1, float default_coeff = 1) {
+    EffectAdder::addDrag(simulator, strength, default_coeff);
+  }
+
+  void addCommandAddLorentzEffect(float magneticStrength = 1, float defaultCharge = 0) {
+    EffectAdder::addLorentz(simulator, magneticStrength, defaultCharge);
+  }
+
+  // Interaction implementations using new system
+  void addCommandAddGravity(float G = 1) {
+    InteractionAdder::addGravity(simulator, G);
+  }
+
+  void addCommandAddSpring(float k = 1, float x0 = 100) {
+    InteractionAdder::addSpring(simulator, k, x0);
+  }
+
+  void addCommandAddCoulomb(float K = 1, float defaultCharge = 0) {
+    InteractionAdder::addCoulomb(simulator, K, 1e-3f, defaultCharge);
+  }
+
   void addCommandAddSoftCollide(float globalSpringStrength = 1, float globalRepulsionStrength = 1,
-    float defaultMoverSpringStrength = 1, float defaultMoverRepulsionStrength = 1); //"default" params are for mover properties 
-  void addCommandAddGravity(float G = 1);
-  template <class EffectType, typename... EffectArgs>
-  void addCommandAddEffect(std::vector<std::any> effect_args, std::vector<std::any> default_params = {});
-  void addCommandAddLorentzEffect(float magneticStrength=1, float defaultCharge = 0);
-  void addCommandAddDragEffect(float strength=1, float default_coeff = 1);
+    float defaultSpringStrength = 1, float defaultRepulsionStrength = 1) {
+    InteractionAdder::addSoftCollide(simulator, globalSpringStrength, globalRepulsionStrength,
+      1e-3f, defaultSpringStrength, defaultRepulsionStrength);
+  }
   void addCommandAffectMover(std::function<void(Mover&)> funcToApply, int mover_id);
   void invokeCommand();
   void update();
@@ -94,42 +143,6 @@ void SimulatorCommander::addCommandUngroup(int id) {
 void SimulatorCommander::addCommandDeleteGroup(int id) {
   addCommand<DeleteGroup>({id});
 };
-
-template <class InteractionType, typename... InteractionArgs>
-void SimulatorCommander::addCommandAddInteraction(std::vector<std::any> interaction_args, std::vector<std::any> default_params) {
-  addCommand<addInteraction<InteractionType, InteractionArgs...>>({interaction_args, default_params});
-}
-
-void SimulatorCommander::addCommandAddSpring(float k, float x0) {
-  addCommandAddInteraction<Spring, float, float>({k, x0}, {});
-}
-
-void SimulatorCommander::addCommandAddCoulomb(float k, float charge) {
-  addCommandAddInteraction<Coulomb, float>({k}, {charge});
-}
-
-void SimulatorCommander::addCommandAddSoftCollide(float globalSpringStrength, float globalRepulsionStrength,
-  float defaultMoverSpringStrength, float defaultMoverRepulsionStrength) {
-  addCommandAddInteraction<SoftCollide, float, float>({globalSpringStrength, globalRepulsionStrength},
-     {defaultMoverSpringStrength, defaultMoverRepulsionStrength});
-}
-
-void SimulatorCommander::addCommandAddGravity(float G) {
-  addCommandAddInteraction<Gravity, float>({G}, {});
-}
-
-template<typename EffectType, typename... EffectArgs>
-void SimulatorCommander::addCommandAddEffect(std::vector<std::any> effect_args, std::vector<std::any> default_params) {
-  addCommand<addEffect<EffectType, EffectArgs...>>({effect_args, default_params});
-}
-
-void SimulatorCommander::addCommandAddDragEffect(float strength, float default_coeff) {
-  addCommandAddEffect<Drag, float>({strength}, {default_coeff});
-}
-
-void SimulatorCommander::addCommandAddLorentzEffect(float magneticStrength, float defaultCharge) {
-  addCommandAddEffect<LorentzEffect, float>({magneticStrength}, {defaultCharge});
-}
 
 void SimulatorCommander::addCommandAffectMover(std::function<void(Mover&)> funcToApply, int mover_id) {
   addCommand<AffectMover>({funcToApply, mover_id});

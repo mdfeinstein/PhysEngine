@@ -1,5 +1,0 @@
-if(EXISTS "C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/effects/tests/Effect_test[1]_tests.cmake")
-  include("C:/Users/Mati/Documents/PhysEngineRestructured/build/simulator/effects/tests/Effect_test[1]_tests.cmake")
-else()
-  add_test(Effect_test_NOT_BUILT Effect_test_NOT_BUILT)
-endif()

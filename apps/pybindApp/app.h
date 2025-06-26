@@ -89,8 +89,9 @@ MyFrame::MyFrame(Simulator& simulator)
 {
     SetDoubleBuffered(true);
     SetBackgroundStyle(wxBG_STYLE_PAINT);
+    StartSimulation();
 
-    CreateSetupScreen();
+    // CreateSetupScreen();
 }
 
 MyFrame::MyFrame(CommanderPtr& commander)

@@ -20,7 +20,13 @@ PyBind11 is used to create some python bindings, allowing the simulation to be c
  <br>
  A "kick" is applied on command to the moused over object, and the force of the kick increases further from the center 
 </div>  
-
+<br>
+<div align="center">
+ <h5> Movers can be added and grouped in real time <br> </h5>
+ <img src="showcase/adding_and_grouping.gif" width="480"/>
+ <br>
+ Movers are created, grouped into a rigid body, and "kicked" into motion
+</div>  
 
 
 

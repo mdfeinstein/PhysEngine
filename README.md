@@ -8,14 +8,14 @@ PyBind11 is used to create some python bindings, allowing the simulation to be c
 ## Demoed Features
 
 <div align="center">
- A Spring-like interaction along with a "soft collide" interaction, with 500 movers
+ <h5> A Spring-like interaction along with a "soft collide" interaction, with 500 movers<br> </h5>
  <img src="showcase/500_movers_and_spring.gif" width="480"/>
  <br>
  (Low quality image from .gif conversion)
 </div>  
-
+<br>
 <div align="center">
- Live interactions can be easily added and customized
+ <h5> Live interactions can be easily added and customized<br> </h5>
  <img src="showcase/kicking.gif" width="480"/>
  <br>
  A "kick" is applied on command to the moused over object, and the force of the kick increases further from the center 

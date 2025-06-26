@@ -8,9 +8,10 @@ PyBind11 is used to create some python bindings, allowing the simulation to be c
 ## Demoed Features
 
 <div align="center">
- <h3> A Spring-like interaction along with a "soft collide" interaction, with 500 movers<br> </h3>
+ <h3> Simulation of Newtonian objects with a GUI <br> </h3>
  <img src="showcase/500_movers_and_spring.gif" width="480"/>
  <br>
+ A Spring-like interaction along with a "soft collide" interaction, with 500 movers
  (Low quality image from .gif conversion)
 </div>  
 <br>
